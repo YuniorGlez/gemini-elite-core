@@ -63,7 +63,7 @@ if [[ "$SELECTED_LANG" == "ES" ]]; then
     MSG_PROTO_2="Commit-Sentinel: Valida mensajes de commit según Conventional Commits."
     MSG_PROTO_3="Skill Activation: Fomenta la activación explícita de habilidades tácticas."
     MSG_PROTO_4="Bun Priority: Prefiere Bun sobre npm/pnpm para mejor rendimiento."
-    MSG_PROMPT_ADOPT="\n¿Quieres adoptar estos protocolos Elite Core en tu GEMINI.md global? (s/n): "
+    MSG_PROMPT_ADOPT="\n¿Quieres adoptar estos protocolos Elite Core en tu GEMINI.md global? [S/n]: "
     MSG_SUCCESS_GEMINI_MD="GEMINI.md global actualizado con protocolos Elite Core."
     MSG_INFO_SKIP_GEMINI="Omitiendo actualización de GEMINI.md. Aún puedes usar las habilidades manualmente."
     MSG_FINISH="¡Aprovisionamiento de Gemini Elite Core completado!"
@@ -72,7 +72,7 @@ if [[ "$SELECTED_LANG" == "ES" ]]; then
     MSG_STATUS_PLANNING="Planificación: Habilitada (Experimental)"
     MSG_STATUS_SKILLS="Habilidades: Desplegadas (25+ MDs Tácticos)"
     MSG_STATUS_HOOKS="Hooks: Monitoreo activo"
-    YES_REGEX="^[Ss]$"
+    YES_REGEX="^[Ss]?$"
 else
     MSG_TITLE="Gemini Elite Core v5.3"
     MSG_SUBTITLE="The Intelligent Provisioning Suite for v0.26.0+"
@@ -101,7 +101,7 @@ else
     MSG_PROTO_2="Commit-Sentinel: Validates commit messages for Conventional Commits."
     MSG_PROTO_3="Skill Activation: Encourages explicit activation of tactical skills."
     MSG_PROTO_4="Bun Priority: Prefers Bun over npm/pnpm for better performance."
-    MSG_PROMPT_ADOPT="\nDo you want to adopt these Elite Core protocols in your global GEMINI.md? (y/n): "
+    MSG_PROMPT_ADOPT="\nDo you want to adopt these Elite Core protocols in your global GEMINI.md? [Y/n]: "
     MSG_SUCCESS_GEMINI_MD="Global GEMINI.md updated with Elite Core protocols."
     MSG_INFO_SKIP_GEMINI="Skipping GEMINI.md update. You can still use the skills manually."
     MSG_FINISH="Gemini Elite Core Provisioning Complete!"
@@ -110,7 +110,7 @@ else
     MSG_STATUS_PLANNING="Planning: Enabled (Experimental)"
     MSG_STATUS_SKILLS="Skills: Deployed (25+ Tactical MDs)"
     MSG_STATUS_HOOKS="Hooks: Monitoring active"
-    YES_REGEX="^[Yy]$"
+    YES_REGEX="^[Yy]?$"
 fi
 
 clear
@@ -218,18 +218,81 @@ fi
 step "$MSG_STEP_CONFIG_MCP"
 check_mcp() {
     local name=$1
-    local search_pattern=$2
-    if [ -f "$SETTINGS_FILE" ] && grep -q "\"$name\":" "$SETTINGS_FILE" && grep -q "$search_pattern" "$SETTINGS_FILE"; then
+    if gemini mcp list 2>/dev/null | grep -q "✓ $name:\|✗ $name:"; then
         return 0
     fi
     return 1
 }
 
-if ! check_mcp "chrome-devtools" "chrome-devtools-mcp"; then
-    gemini mcp add -s user chrome-devtools npx -y chrome-devtools-mcp @latest &> /dev/null || true
+# Add chrome-devtools if missing
+if ! check_mcp "chrome-devtools"; then
+    info "Adding chrome-devtools MCP..."
+    gemini mcp add --scope user chrome-devtools npx -y chrome-devtools-mcp @latest &> /dev/null || true
 fi
-if ! check_mcp "filesystem" "server-filesystem"; then
-    gemini mcp add -s user filesystem npx -y @modelcontextprotocol/server-filesystem . &> /dev/null || true
+
+# Filesystem MCP Selection (Node vs Rust)
+if ! check_mcp "filesystem"; then
+    echo -e "\n${MAGENTA}📁 Filesystem MCP Selection${NC}"
+    if [[ "$SELECTED_LANG" == "ES" ]]; then
+        echo -e "1) Estándar (Node.js) - Estable"
+        echo -e "2) Experimental (Rust) - Mucho más rápido, herramientas adicionales"
+        echo -n "Selecciona una opción [1]: "
+    else
+        echo -e "1) Standard (Node.js) - Stable"
+        echo -e "2) Experimental (Rust) - Faster, extra tools"
+        echo -n "Select an option [1]: "
+    fi
+    read -r FS_CHOICE
+
+    if [[ "$FS_CHOICE" == "2" ]]; then
+        BINARY_NAME="rust-mcp-filesystem"
+        [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]] && BINARY_NAME="rust-mcp-filesystem.exe"
+
+        if ! command -v "$BINARY_NAME" &> /dev/null; then
+            info "Installing rust-mcp-filesystem..."
+            if [[ "$OSTYPE" == "darwin"* || "$OSTYPE" == "linux"* ]]; then
+                curl --proto '=https' --tlsv1.2 -LsSf https://github.com/rust-mcp-stack/rust-mcp-filesystem/releases/download/v0.4.0/rust-mcp-filesystem-installer.sh | sh &> /dev/null || true
+            else
+                warn "Auto-install not supported for your OS. Please install manually: https://github.com/rust-mcp-stack/rust-mcp-filesystem"
+            fi
+        fi
+
+        if command -v "$BINARY_NAME" &> /dev/null; then
+            # Use absolute path and correct flag -w for Rust version
+            gemini mcp add --scope user filesystem "$(command -v "$BINARY_NAME")" -w "$(pwd)" &> /dev/null || true
+            success "Rust Filesystem MCP configured."
+        else
+            info "Falling back to Node.js filesystem..."
+            gemini mcp add --scope user filesystem npx -y @modelcontextprotocol/server-filesystem . &> /dev/null || true
+        fi
+    else
+        info "Adding standard filesystem MCP..."
+        gemini mcp add --scope user filesystem npx -y @modelcontextprotocol/server-filesystem . &> /dev/null || true
+    fi
+fi
+
+# Consensual installation of llm-tldr (Experimental)
+if ! check_mcp "llm-tldr"; then
+    echo -e "\n${MAGENTA}🔍 Experimental: llm-tldr MCP${NC}"
+    if [[ "$SELECTED_LANG" == "ES" ]]; then
+        echo -e "llm-tldr ayuda a reducir el consumo de tokens hasta un 95% y acelera el análisis estructural."
+        echo -n "¿Deseas instalarlo? (Requiere Python 3) [S/n]: "
+    else
+        echo -e "llm-tldr helps reduce token consumption by up to 95% and speeds up structural analysis."
+        echo -n "Do you want to install it? (Requires Python 3) [Y/n]: "
+    fi
+    read -r INSTALL_TLDR
+    if [[ "$INSTALL_TLDR" =~ $YES_REGEX ]]; then
+        if command -v python3 &> /dev/null && command -v pip3 &> /dev/null; then
+            info "Installing llm-tldr via pip3..."
+            pip3 install --user llm-tldr &> /dev/null || true
+            # Correct order: name command args...
+            gemini mcp add --scope user llm-tldr python3 -m tldr.mcp_server &> /dev/null || true
+            success "llm-tldr MCP configured in settings.json."
+        else
+            warn "Python 3 or pip3 not found. Skipping llm-tldr."
+        fi
+    fi
 fi
 success "$MSG_SUCCESS_MCP_READY"
 
@@ -239,7 +302,7 @@ cd skills
 for skill_dir in */; do
     [ -d "$skill_dir" ] || continue
     SKILL_NAME="${skill_dir%/}"
-    LOCAL_SKILL="$SKILL_NAME/src/SKILL.md"
+    LOCAL_SKILL="$SKILL_NAME/SKILL.md"
     INSTALLED_SKILL="$HOME/.gemini/skills/$SKILL_NAME/SKILL.md"
 
     if [ -f "$LOCAL_SKILL" ] && [ -f "$INSTALLED_SKILL" ]; then
@@ -327,10 +390,8 @@ EOF
         # BSD sed (macOS) requires different syntax for -i
         if [[ "$OSTYPE" == "darwin"* ]]; then
             sed -i '' '/<ELITE_CORE_CONTEXT>/,/}<\/ELITE_CORE_CONTEXT>/d' "$USER_GEMINI" 2>/dev/null || true
-            sed -i '' '/<SQUAADS_CONTEXT>/,/}<\/SQUAADS_CONTEXT>/d' "$USER_GEMINI" 2>/dev/null || true
         else
             sed -i '/<ELITE_CORE_CONTEXT>/,/}<\/ELITE_CORE_CONTEXT>/d' "$USER_GEMINI" 2>/dev/null || true
-            sed -i '/<SQUAADS_CONTEXT>/,/}<\/SQUAADS_CONTEXT>/d' "$USER_GEMINI" 2>/dev/null || true
         fi
     fi
     echo "$NEW_BLOCK" >> "$USER_GEMINI"

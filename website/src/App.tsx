@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
+import { TFunction } from 'i18next';
 import { 
   Globe, 
   Github, 
@@ -90,7 +91,7 @@ function App() {
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gemini-blue/10 border border-gemini-blue/20 text-gemini-blue text-sm mb-6"
           >
             <Zap size={14} />
-            <span>v1.7.0 Optimized for Gemini 3 Flash Preview</span>
+            <span>v2.0.0 Optimized for Gemini 3 Flash Preview</span>
           </motion.div>
           
           <motion.h1 
@@ -215,7 +216,14 @@ function App() {
   );
 }
 
-function FeatureCard({ icon, title, desc, variants }: any) {
+interface FeatureCardProps {
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+  variants: Variants;
+}
+
+function FeatureCard({ icon, title, desc, variants }: FeatureCardProps) {
   return (
     <motion.div 
       variants={variants}
@@ -232,7 +240,7 @@ function FeatureCard({ icon, title, desc, variants }: any) {
   );
 }
 
-function InstallSection({ t }: any) {
+function InstallSection({ t }: { t: TFunction }) {
   const commands = [
     { label: t('install.step1'), cmd: 'git clone https://github.com/YuniorGlez/gemini-elite-core.git' },
     { label: t('install.step2'), cmd: 'cd gemini-elite-core' },

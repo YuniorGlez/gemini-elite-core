@@ -7,7 +7,8 @@ Transform your Gemini CLI into a high-performance autonomous agentic environment
 ## 🚀 Key Features
 
 - **Advanced Agent Configs**: Pre-configured `codebaseInvestigator`, `codeReviewer`, `bugFixer`, and `skillCreator` for optimal performance in v0.26.0.
-- **Tactical Skill Library**: Over 25 specialized skills for Next.js 16, Tailwind 4, Supabase, Git Flow, and more.
+- **Tactical Skill Library**: Over 30 specialized skills for React 19, Next.js 16, Tailwind 4, Supabase, Git Flow, and more.
+- **Improved Provisioning**: New setup script with automated MCP detection (Chrome DevTools, Filesystem, llm-tldr) and optional Rust-based Filesystem MCP for extreme performance.
 - **Agentic Hooks**: Automated type-checking, commit message validation, and session initialization.
 - **Deep Documentation**: Modern technical guides for the latest 2026 tech stack.
 - **V26 Experimental Support**: Built-in support for `experimental.plan` and the new Agentic UI.
