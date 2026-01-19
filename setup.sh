@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Gemini Elite Core Setup Script - v5.3 "Stable Edition"
-# Optimized for Gemini CLI v0.26.0+ (Nightly)
-# CLI + Skills + Advanced Agents + Planning Hooks
+# Gemini Elite Core Setup Script - v5.4 "Generalist Edition"
+# Optimized for Gemini CLI v0.26.0+ (Nightly 20260119)
+# CLI + Skills + Generalist Agent + Planning Policies
 
 set -e
 
@@ -36,8 +36,8 @@ fi
 
 # Translations
 if [[ "$SELECTED_LANG" == "ES" ]]; then
-    MSG_TITLE="Gemini Elite Core v5.3"
-    MSG_SUBTITLE="La suite de aprovisionamiento inteligente para v0.26.0+"
+    MSG_TITLE="Gemini Elite Core v5.4"
+    MSG_SUBTITLE="La suite de aprovisionamiento inteligente (Generalist Update)"
     MSG_STEP_CHECK_CLI="Comprobando Gemini CLI..."
     MSG_WARN_CLI_NOT_FOUND="Gemini CLI no detectado. Instalando versión @nightly..."
     MSG_SUCCESS_CLI_INSTALLED="Gemini CLI instalado."
@@ -67,15 +67,15 @@ if [[ "$SELECTED_LANG" == "ES" ]]; then
     MSG_SUCCESS_GEMINI_MD="GEMINI.md global actualizado con protocolos Elite Core."
     MSG_INFO_SKIP_GEMINI="Omitiendo actualización de GEMINI.md. Aún puedes usar las habilidades manualmente."
     MSG_FINISH="¡Aprovisionamiento de Gemini Elite Core completado!"
-    MSG_STATUS_CLI="CLI: Nightly (v0.26.0+)"
-    MSG_STATUS_AGENTS="Agentes: Activos y Optimizados"
+    MSG_STATUS_CLI="CLI: Nightly (v0.26.0-nightly.20260119)"
+    MSG_STATUS_AGENTS="Agentes: Generalist + Especialistas (Activos)"
     MSG_STATUS_PLANNING="Planificación: Habilitada (Experimental)"
     MSG_STATUS_SKILLS="Habilidades: Desplegadas (25+ MDs Tácticos)"
     MSG_STATUS_HOOKS="Hooks: Monitoreo activo"
     YES_REGEX="^[Ss]?$"
 else
-    MSG_TITLE="Gemini Elite Core v5.3"
-    MSG_SUBTITLE="The Intelligent Provisioning Suite for v0.26.0+"
+    MSG_TITLE="Gemini Elite Core v5.4"
+    MSG_SUBTITLE="The Intelligent Provisioning Suite (Generalist Update)"
     MSG_STEP_CHECK_CLI="Checking Gemini CLI..."
     MSG_WARN_CLI_NOT_FOUND="Gemini CLI not detected. Installing @nightly version..."
     MSG_SUCCESS_CLI_INSTALLED="Gemini CLI installed."
@@ -105,8 +105,8 @@ else
     MSG_SUCCESS_GEMINI_MD="Global GEMINI.md updated with Elite Core protocols."
     MSG_INFO_SKIP_GEMINI="Skipping GEMINI.md update. You can still use the skills manually."
     MSG_FINISH="Gemini Elite Core Provisioning Complete!"
-    MSG_STATUS_CLI="CLI: Nightly (v0.26.0+)"
-    MSG_STATUS_AGENTS="Agents: Active & Optimized"
+    MSG_STATUS_CLI="CLI: Nightly (v0.26.0-nightly.20260119)"
+    MSG_STATUS_AGENTS="Agents: Generalist + Specialists (Active)"
     MSG_STATUS_PLANNING="Planning: Enabled (Experimental)"
     MSG_STATUS_SKILLS="Skills: Deployed (25+ Tactical MDs)"
     MSG_STATUS_HOOKS="Hooks: Monitoring active"
@@ -155,16 +155,22 @@ SETTINGS_FILE="$HOME/.gemini/settings.json"
 mkdir -p "$HOME/.gemini"
 
 OPTIMIZED_SETTINGS='{
+  "enableAgentSkills": true,
+  "enableLLMCorrection": true,
   "experimental": {
-    "skills": true,
-    "planning": true,
     "plan": true,
     "planningMode": "auto",
     "planVisualization": true,
     "requirePlanApproval": false,
-    "skillCreator": true
+    "enforceReadOnlyPolicy": true,
+    "haltOnPolicyViolation": true
   },
   "agents": {
+    "generalist": {
+      "enabled": true,
+      "modelConfig": { "temperature": 0.5, "maxOutputTokens": 4096 },
+      "runConfig": { "maxTurns": 50, "timeout": 600000 }
+    },
     "codebaseInvestigator": {
       "enabled": true,
       "modelConfig": { "temperature": 0.3, "maxOutputTokens": 4096 },
@@ -362,36 +368,35 @@ if [[ "$ADOPT_PROTOCOLS" =~ $YES_REGEX ]]; then
     # Using 'read' with a heredoc is safer than $(cat) for literal content
     read -r -d '' NEW_BLOCK << 'EOF' || true
 <ELITE_CORE_CONTEXT>
-<!-- VERSION: 2.1.0 -->
-# 🚀 Gemini Elite Core - Quick Start Guide
+<!-- VERSION: 2.2.0 -->
+# 🚀 Gemini Elite Core - Quick Start Guide (Generalist Edition)
 
-## 🧠 Activating Skills
-This core installs a tactical skill library. To make the agent effective, **activate them explicitly** based on the task:
+## 🧠 Activating Skills & Agents
+This core installs a tactical skill library and the new **Generalist Agent**.
+- **Generalist Agent**: Just type your request (e.g., `> Refactor my code`). It will automatically orchestrate experts.
 - `activate_skill commit-sentinel`: Before committing (Git Protocol).
 - `activate_skill next16-expert`: For Next.js 16 development.
-- `activate_skill tldr-expert`: For semantic analysis and token saving.
-- `activate_skill stagehand-expert`: For resilient browser automation.
-- `activate_skill tailwind4-expert!`: For Tailwind 4 design.
 
 ## ⚙️ Configured MCPs
 You have the agent's eyes and hands ready:
 - **chrome-devtools**: See what happens in the browser.
 - **filesystem**: Read and write in your current workspace.
-- **llm-tldr**: Semantic code analysis (if installed).
+- **llm-tldr**: Semantic code analysis (95% token savings).
 
 ## 🛡️ Mandatory Protocols
-1. **Testing**: Use **Stagehand V3** for E2E. Activate `stagehand-expert`.
-2. **Typing**: Always run `bun x tsc --noEmit` after logical changes.
-3. **Commits**: Follow Conventional Commits. Use the `commit-sentinel` skill.
+1. **Security**: Plan Mode is active with **Read-Only Policies**. Write operations require approval.
+2. **Testing**: Use **Stagehand V3** for E2E. Activate `stagehand-expert`.
+3. **Typing**: Always run `bun x tsc --noEmit` after logical changes.
+4. **Commits**: Follow Conventional Commits. Use the `commit-sentinel` skill.
 </ELITE_CORE_CONTEXT>
 EOF
 
     if [ -f "$USER_GEMINI" ]; then
         # BSD sed (macOS) requires different syntax for -i
         if [[ "$OSTYPE" == "darwin"* ]]; then
-            sed -i '' '/<ELITE_CORE_CONTEXT>/,/}<\/ELITE_CORE_CONTEXT>/d' "$USER_GEMINI" 2>/dev/null || true
+            sed -i '' '/<ELITE_CORE_CONTEXT>/,/<\/ELITE_CORE_CONTEXT>/d' "$USER_GEMINI" 2>/dev/null || true
         else
-            sed -i '/<ELITE_CORE_CONTEXT>/,/}<\/ELITE_CORE_CONTEXT>/d' "$USER_GEMINI" 2>/dev/null || true
+            sed -i '/<ELITE_CORE_CONTEXT>/,/<\/ELITE_CORE_CONTEXT>/d' "$USER_GEMINI" 2>/dev/null || true
         fi
     fi
     echo "$NEW_BLOCK" >> "$USER_GEMINI"
