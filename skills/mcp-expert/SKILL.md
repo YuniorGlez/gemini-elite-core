@@ -1,56 +1,45 @@
 ---
 name: mcp-expert
 id: mcp-expert
-version: 1.2.0
-description: "Gemini Elite MCP Orchestrator. Master of Chrome DevTools, Context7 and Auto-Configuration."
+version: 1.3.0
+description: "Gemini Elite MCP Orchestrator. Master of Chrome DevTools, Context7, and browser-use onboarding."
 ---
 
 # 🛠️ Skill: mcp-expert
 
 ## Description
-Master orchestrator of MCP servers. Not only uses the tools but acts as an **Onboarding Engineer**, detecting which MCPs are missing in the current environment and helping the user configure them safely and efficiently.
-
-## Mental Model: The Cyber-Augmented Engineer
-You don't guess; you observe. You use external tools to close the feedback loop: **Code -> Deployment -> Verification**.
+Master orchestrator of MCP servers and onboarding specialist. Proactively detects missing tools and guides the user through secure configuration.
 
 ## 🚀 Proactive Onboarding Protocol
-When you "land" on a new project, your first mission is to check the health of the tool stack:
+1.  **Detection**: Scan project for dependencies and missing MCPs.
+2.  **MCP Validation**: Check if `browser-use`, `filesystem`, or `chrome-devtools` are active.
+3.  **Assistance**: If `browser-use` is missing or failing, trigger the **Web Automation Onboarding**.
 
-1.  **Detection**: Check if the project uses Supabase, Neon, Next.js, etc. (looking at `package.json` or folder structure).
-2.  **MCP Validation**: Check if the corresponding MCP servers are configured.
-3.  **Assistance**: If configuration is missing, say: *"I've detected that this is a [Technology] project. To give you superpowers, would you like me to configure the [Technology] MCP in a local `.mcp.json` file? I just need your [API Key / Project Ref]."*
+## 🌐 Web Automation Onboarding (browser-use)
+If `browser-use` is requested or needed:
+1.  **Check API Keys**: Verify if `BROWSER_USE_API_KEY` or `GOOGLE_API_KEY` exist.
+2.  **Guide User**:
+    - *"I see you want to use browser-use. For best results, I recommend getting a **Browser Use API Key** (includes free $10) here: [cloud.browser-use.com/new-api-key](https://cloud.browser-use.com/new-api-key)"*
+    - *"Alternatively, you can use your **Gemini Key** by setting `GOOGLE_API_KEY`. Get one here: [aistudio.google.com/app/u/1/apikey](https://aistudio.google.com/app/u/1/apikey)"*
+3.  **Local Configuration**: Offer to create/update `.mcp.json` with the keys.
 
-## 📂 Configuration Strategy: Local over Global
-Always prioritize creating a `.mcp.json` file in the project root for project-specific configurations (like Supabase `project_ref`).
-
-### Supabase Blueprint (`.mcp.json`)
+## 📂 Configuration Blueprint
 ```json
-{
-  "mcpServers": {
-    "supabase": {
-      "type": "http",
-      "url": "https://mcp.supabase.com/mcp?project_ref=YOUR_PROJECT_REF&read_only=true&features=database,docs,debugging,development,functions
-    }
+"browser-use": {
+  "command": "uvx",
+  "args": ["--quiet", "--with", "playwright", "--with", "browser-use", "-y", "mcp-server-browser-use", "server"],
+  "env": {
+    "BROWSER_USE_API_KEY": "process.env.BROWSER_USE_API_KEY",
+    "GOOGLE_API_KEY": "process.env.GEMINI_API_KEY"
   }
 }
 ```
 
-### Context7 & Neon (Global Keys)
-For global API Keys (Context7, Neon, GitHub), instruct the user to add them as environment variables in their shell (`.zshrc` / `.bashrc`) and use the `"env"` syntax in the JSON:
-```json
-"github": {
-  "command": "npx",
-  "args": ["-y", "@modelcontextprotocol/server-github"],
-  "env": { "GITHUB_PERSONAL_ACCESS_TOKEN": "process.env.GITHUB_TOKEN" }
-}
-```
-
 ## Critical Operating Procedures (COPs)
-1.  **Visual Debugging**: If a UI component fails, use **Chrome DevTools MCP** to inspect styles and console.
-2.  **Doc Verification**: Before using Next.js 16 or Tailwind 4, invoke **Context7** (`use context7`).
-3.  **DB Integrity**: Verify migrations using **Supabase/Neon MCP** before running the application.
+1.  **Visual Debugging**: Use `chrome-devtools` for local UI inspection.
+2.  **Autonomous Browsing**: Use `browser-use` for navigation, extraction, and tasks.
+3.  **Security First**: Never hardcode secrets; always use `process.env` mapping.
 
 ## Prohibited Patterns
-- **DO NOT** allow the user to work blindly if you can configure an MCP for them.
-- **DO NOT** write secrets directly into `~/.gemini/settings.json` if you can use environment variables.
-- **DO NOT** assume the user knows where to find their `project_ref`; tell them it's in *Project Settings -> General* on Supabase.
+- **DO NOT** use `pip` if `uv` is available.
+- **DO NOT** ignore missing browser-use dependencies if the user wants web automation.
