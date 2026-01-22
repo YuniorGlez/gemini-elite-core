@@ -41,8 +41,8 @@ This table tracks the last update for each skill within the project to ensure te
 | **strict-auditor** | January 22, 2026 - 19:45 | 2.1.0 | ✅ Refactored |
 | tldr-expert | - | - | ⏳ Pending Refactor |
 | track-master | - | - | ⏳ Pending Refactor |
-| ui-ux-pro | - | - | ⏳ Pending Refactor |
-| ui-ux-specialist | - | - | ⏳ Pending Refactor |
+| **ui-ux-pro** | January 22, 2026 - 20:00 | 1.1.0 | ✅ Refactored |
+| **ui-ux-specialist** | January 22, 2026 - 20:05 | 1.1.0 | ✅ Refactored |
 | utility-pro | - | - | ⏳ Pending Refactor |
 | vercel-sync | - | - | ⏳ Pending Refactor |
 

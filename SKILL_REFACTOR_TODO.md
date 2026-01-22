@@ -159,27 +159,38 @@
 ### 23. code-architect
 - **Status**: COMPLETED (v1.1.0). ~500+ lines with AX (Agent Experience) and Modular Monoliths.
 - **Tasks**:
-- [x] Research 2026 AX standards and AI-native design.
-- [x] Add guides for modern modular monoliths and edge orchestration.
+    - [x] Research 2026 AX standards and AI-native design.
+    - [x] Add guides for modern modular monoliths and edge orchestration.
 
-+### 24. auditor-pro
-+- **Status**: COMPLETED (v1.1.0). ~500+ lines with CTEM and Agentic Security.
-+- **Tasks**:
-+    - [x] Research 2026 security trends (CTEM, NHI).
-+    - [x] Add guides for agentic security orchestration and forensics.
-+
-+### 25. strict-auditor
-+- **Status**: COMPLETED (v2.1.0). ~500+ lines with Verification Gap and AI code standards.
-+- **Tasks**:
-+    - [x] Define "Verification Gap" resolution strategy.
-+    - [x] Add quality gate metrics and AI coding standards.
-+
- ## Priorities: Low (Niche or Stable)
+### 24. auditor-pro
+- **Status**: COMPLETED (v1.1.0). ~500+ lines with CTEM and Agentic Security.
+- **Tasks**:
+    - [x] Research 2026 security trends (CTEM, NHI).
+    - [x] Add guides for agentic security orchestration and forensics.
 
+### 25. strict-auditor
+- **Status**: COMPLETED (v2.1.0). ~500+ lines with Verification Gap and AI code standards.
+- **Tasks**:
+    - [x] Define "Verification Gap" resolution strategy.
+    - [x] Add quality gate metrics and AI coding standards.
+
+### 26. ui-ux-pro
+- **Status**: COMPLETED (v1.1.0). ~500+ lines with Bento Grid and AI adaptive layouts.
+- **Tasks**:
+    - [x] Research 2026 design trends (Bento, Glassmorphism v3).
+    - [x] Add guides for AI-driven interfaces.
+
+### 27. ui-ux-specialist
+- **Status**: COMPLETED (v1.1.0). ~500+ lines with WCAG 2.2 and inclusive patterns.
+- **Tasks**:
+    - [x] Research WCAG 2.2 Level AA success criteria.
+    - [x] Add guides for semantic HTML and inclusive design.
+
+## Priorities: Low (Niche or Stable)
 - [ ] **TLDR-expert**: Add examples for token-efficient file summaries.
 
 ---
 ## Tracking
 - **Total Skills to Refactor**: 42
-- **Completed**: 23
-- **Overall Quality Score**: 54% (Estimated)
+- **Completed**: 27
+- **Overall Quality Score**: 64% (Estimated)
