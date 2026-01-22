@@ -18,7 +18,7 @@ This table tracks the last update for each skill within the project to ensure te
 | **artifact-janitor** | January 22, 2026 - 16:55 | 1.1.0 | ✅ Refactored |
 | auditor-pro | - | - | ⏳ Pending Refactor |
 | **browser-use-expert** | January 22, 2026 - 16:35 | 1.2.0 | ✅ Refactored |
-| code-architect | - | - | ⏳ Pending Refactor |
+| **code-architect** | January 22, 2026 - 19:20 | 1.1.0 | ✅ Refactored |
 | **commit-sentinel** | January 22, 2026 - 17:50 | 2.1.0 | ✅ Refactored |
 | context-distiller | - | - | ⏳ Pending Refactor |
 | **db-enforcer** | January 22, 2026 - 18:10 | 2.1.0 | ✅ Refactored |

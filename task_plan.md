@@ -31,7 +31,8 @@ Establish a high-standard strategy for creating powerful skills and refactor all
     - [x] **Step 4.17: Refactor `debug-master`**: 500+ lines with distributed tracing and agentic response.
     - [x] **Step 4.18: Refactor `expert-instruction`**: 500+ lines with EGI and memory systems.
     - [x] **Step 4.19: Refactor `git-flow` and `git-pro`**: 500+ lines with TBD and GitHub Actions.
-    - [ ] **Step 4.20: Completion & Commit**: Update plans, report to user, and commit upon approval.
+    - [x] **Step 4.20: Refactor `code-architect`**: 500+ lines with AX and Modular Monoliths.
+    - [ ] **Step 4.21: Completion & Commit**: Update plans, report to user, and commit upon approval.
 
 ## Key Questions
 1. What specific structural elements make the reference repository's skills superior?
