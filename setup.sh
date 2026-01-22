@@ -409,7 +409,7 @@ if command -v bun &> /dev/null; then
         if (process.env.INSTALL_BROWSER_USE_MCP === 'true') {
             mcpServers['browser-use'] = {
                 command: 'uvx',
-                args: ['--quiet', '--with', 'playwright', '--with', 'browser-use', '-y', 'mcp-server-browser-use', 'server'],
+                args: ['--quiet', '--with', 'playwright', '--with', 'browser-use', 'mcp-server-browser-use', 'server'],
                 env: {
                     GOOGLE_API_KEY: process.env.GEMINI_API_KEY || \"\",
                     BROWSER_USE_API_KEY: process.env.BROWSER_USE_API_KEY || \"\"
