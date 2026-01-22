@@ -28,7 +28,7 @@ This table tracks the last update for each skill within the project to ensure te
 | **git-flow** | January 22, 2026 - 19:10 | 1.1.0 | ✅ Refactored |
 | **git-pro** | January 22, 2026 - 19:10 | 2.1.0 | ✅ Refactored |
 | **hydration-guardian** | January 22, 2026 - 22:05 | 1.1.0 | ✅ Refactored |
-| **json-render-expert** | January 22, 2026 - 17:55 | 1.0.0 | ✅ Created |
+| **json-render-expert** | January 22, 2026 - 19:55 | 1.1.0 | ✅ Created |
 | **laravel-pro** | January 22, 2026 - 23:15 | 1.1.0 | ✅ Created |
 | **manus-expert** | January 22, 2026 - 21:15 | 1.2.0 | ✅ Refactored |
 | **mcp-expert** | January 22, 2026 - 17:35 | 1.4.0 | ✅ Refactored |

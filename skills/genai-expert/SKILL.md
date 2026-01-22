@@ -1,70 +1,81 @@
----
-name: genai-expert
-id: genai-expert
-version: 1.1.0
-description: "Senior SDK Master for @google/genai v1.35.0+, expert in Controlled Outputs, Multimodal Context, and Structured Intelligence."
-last_updated: "2026-01-22"
----
-
 # Skill: GenAI Expert (Standard 2026)
 
-**Role:** The GenAI Expert is the architect of "Structured Intelligence" within the Squaads AI Core. This role masters the `@google/genai` SDK to integrate Gemini 1.5 Pro and Flash models into production workflows. In 2026, the focus has shifted from simple chat prompts to "Controlled Generation," complex multimodal analysis, and high-efficiency context caching.
+**Role:** The GenAI Expert is the architect of "Structured Intelligence" within the Squaads AI Core. This role masters the `@google/genai` SDK v1.x to integrate Gemini 3 into production workflows. In 2026, the focus has shifted from simple chat prompts to "Controlled Generation," complex multimodal analysis, and high-efficiency context caching.
 
 ## 🎯 Primary Objectives
-1.  **Structured Output Mastery:** Ensuring 100% reliable JSON responses using Controlled Generation (v1.35.0+).
+1.  **Structured Output Mastery:** Ensuring 100% reliable JSON responses using Controlled Generation (v1.x SDK).
 2.  **Multimodal Orchestration:** Integrating Video, Audio, and Image analysis into reasoning loops.
 3.  **Context Optimization:** Utilizing Context Caching to handle 1M+ token codebases with low latency and cost.
 4.  **System Instruction Design:** Crafting immutable "Persona" layers that prevent jailbreaking and hallucination.
+5.  **Gemini 3 Defaulting:** Prioritize `gemini-3-flash-preview` for agentic and streaming UI tasks.
 
 ---
 
-## 🏗️ The 2026 SDK Toolbelt
+## 🏗️ The 2026 SDK Toolbelt (v1.x)
 
 ### 1. Core Models
-- **Gemini 1.5 Pro:** The reasoning engine for complex coding and logic tasks.
-- **Gemini 1.5 Flash:** The high-speed agent for real-time extraction and summarization.
+- **Gemini 3 Flash Preview:** The current Squaads standard for high-speed streaming and UI generation (`models/gemini-3-flash-preview`).
+- **Gemini Flash Lite Latest:** The cost-effective high-speed model for simple extractions.
 
-### 2. Key SDK Features
-- **Controlled Generation:** Forcing the model to follow a Zod or JSON schema.
-- **System Instructions:** Defining the model's core logic at the engine level.
-- **Function Calling:** Seamlessly connecting AI to local project tools and APIs.
+### 2. Key SDK Features (v1.x Patterns)
+- **Controlled Generation:** Using `responseSchema` with the client-based API.
+- **Streaming Async Iteration:** Proper handling of `response.stream` for real-time outputs.
+- **Function Calling:** Connecting Gemini to local project tools via the `tools` property.
 
 ---
 
 ## 🛠️ Implementation Patterns
 
 ### 1. Controlled JSON Output (The 2026 Way)
-No more "Please return only JSON" prompts. Use the native `responseSchema`.
+No more "Please return only JSON" prompts. Use the native `responseSchema` with the v1.x SDK.
 
 ```typescript
-import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
+import { GoogleGenAI } from "@google/genai";
+
+const client = new GoogleGenAI({ apiKey });
 
 const schema = {
-  description: "User profile extraction",
-  type: SchemaType.OBJECT,
+  type: "OBJECT",
   properties: {
-    name: { type: SchemaType.STRING },
-    score: { type: SchemaType.NUMBER },
+    name: { type: "STRING" },
+    score: { type: "NUMBER" },
   },
   required: ["name", "score"],
 };
 
-const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-pro",
-  generationConfig: {
+const response = await client.models.generateContent({
+  model: "models/gemini-3-flash-preview",
+  contents: [{ role: "user", parts: [{ text: "Extract user data..." }] }],
+  config: {
     responseMimeType: "application/json",
     responseSchema: schema,
   },
 });
 ```
 
-### 2. Context Caching for Large Repos
+### 2. Reliable Streaming (Lessons Learned)
+Always iterate over the `.stream` property and access `.text` as a property.
+
+```typescript
+const response = await client.models.generateContentStream({
+  model: "models/gemini-3-flash-preview",
+  contents: [...]
+});
+
+// Correct pattern for v1.x
+for await (const chunk of response.stream) {
+  const text = chunk.text; // Property, NOT a function chunk.text()
+  if (text) process.stdout.write(text);
+}
+```
+
+### 3. Context Caching for Large Repos
 Reducing costs and latency for recurring codebase analysis.
 
 ```typescript
 // 2026 Pattern: Caching a large repo context
-const cache = await cacheManager.create({
-  model: "models/gemini-1.5-pro-002",
+const cache = await client.caches.create({
+  model: "models/gemini-flash-lite-latest",
   contents: [
     { role: "user", parts: [{ text: codebaseIngest }] }
   ],
@@ -72,21 +83,13 @@ const cache = await cacheManager.create({
 });
 ```
 
-### 3. Multimodal Video Extraction
-```typescript
-const result = await model.generateContent([
-  { fileData: { mimeType: "video/mp4", fileUri: videoUri } },
-  { text: "List every scene where a user clicks a button." },
-]);
-```
-
 ---
 
 ## 🚫 The "Do Not List" (Anti-Patterns)
-1.  **NEVER** use regex to parse AI output if `responseSchema` can be used.
-2.  **NEVER** expose the raw `GOOGLE_API_KEY` to the client-side. Always use a Node.js/Bun proxy.
-3.  **NEVER** use Gemini 1.5 Pro for simple tasks where Flash would suffice (Cost & Latency optimization).
-4.  **NEVER** ignore "Safety Settings." In 2026, we default to `BLOCK_MEDIUM_AND_ABOVE` for all production code.
+1.  **NEVER** use `getGenerativeModel()` - This is legacy syntax from `@google/generative-ai`.
+2.  **NEVER** use `chunk.text()` - In v1.x it throws a TypeError as it is a getter.
+3.  **NEVER** iterate over the response object directly - Use `response.stream`.
+4.  **NEVER** expose the raw `GOOGLE_API_KEY` to the client-side.
 
 ---
 
@@ -94,33 +97,18 @@ const result = await model.generateContent([
 
 | Issue | Likely Cause | 2026 Corrective Action |
 | :--- | :--- | :--- |
-| **Hallucinated JSON** | Missing `responseSchema` | Implement strict schema-based generation config. |
-| **High Token Costs** | Redundant context sent every time | Implement Context Caching for data over 32k tokens. |
-| **Safety Blockage** | Prompt contains ambiguous terms | Use "System Instructions" to pre-sanitize the model's intent. |
-| **Streaming Lag** | Model overhead (Pro) | Switch to Flash or use `generateContentStream` for better UX. |
+| **TypeError: ... iterator** | Iterating over response object | Use `for await (const chunk of response.stream)`. |
+| **TypeError: text is not a function** | Calling `chunk.text()` | Use the property `chunk.text`. |
+| **High Token Costs** | Redundant context sent | Implement Context Caching for data over 32k tokens. |
+| **Streaming Lag** | Buffering in middleware | Ensure no buffering in Next.js or proxies. |
 
 ---
 
-## 📚 Reference Library
-- **[Structured Intelligence](./references/1-structured-intelligence.md):** Deep dive into JSON schemas and enums.
-- **[Multimodal Orchestration](./references/2-multimodal-orchestration.md):** Working with Audio, Video, and Files.
-- **[Security & Rate Limiting](./references/3-security-and-rate-limiting.md):** Production-grade AI scaling.
-
----
-
-## 📊 Quality Metrics
+## 🏁 Quality Metrics
 - **Schema Adherence:** 100% (Native SDK enforcement).
-- **Latency (Flash):** < 1s for standard extractions.
-- **Context Hit Rate:** > 90% (Using caching effectively).
+- **Latency (Gemini 3 Flash):** < 300ms perceived with JSONL Patching.
+- **Efficiency:** Use Gemini 3 for UI and 1.5 Pro for complex logic.
 
 ---
 
-## 🔄 Evolution from v0.x to v1.35.0
-- **v0.1:** Basic text generation.
-- **v1.0:** Introduction of Gemini 1.5 Pro and 1M context.
-- **v1.20:** Context Caching and improved Function Calling.
-- **v1.35.0:** Stable Controlled Generation and native Pydantic/Zod schema mapping.
-
----
-
-**End of GenAI Expert Standard (v1.1.0)**
+*Updated: January 22, 2026 - 23:25*

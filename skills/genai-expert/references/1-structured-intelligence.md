@@ -38,7 +38,7 @@ const userSchema = z.object({
 });
 
 const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash",
+  model: "gemini-3-flash-preview",
   generationConfig: {
     responseMimeType: "application/json",
     responseSchema: zodToJsonSchema(userSchema) as any,
@@ -66,3 +66,7 @@ const prioritySchema = {
 1.  **No More Parsing Hacks:** No `JSON.parse(result.replace('```json', ''))`.
 2.  **Validation at the Source:** If the model can't fit the data into the schema, it returns an error rather than broken JSON.
 3.  **Efficiency:** Models actually use fewer tokens when constrained to a schema.
+
+---
+
+*Updated: January 22, 2026 - 23:25*

@@ -54,7 +54,7 @@ Crucial for large codebases or stable documentation.
 ```typescript
 // Squaads Standard: 1M+ token repository caching
 const codebaseCache = await cacheManager.create({
-  model: "models/gemini-1.5-pro", // Pro models support larger caches
+  model: "gemini-flash-lite-latest", 
   contents: [{ role: "user", parts: [{ text: fullRepoData }] }],
   ttlSeconds: 86400, // Cache for 24 hours
 });
@@ -119,3 +119,5 @@ Using XML tags to reduce instruction drift and token wastage in multi-turn chats
 ---
 
 **End of AI Cost Optimizer Standard (v1.1.0)**
+
+*Updated: January 22, 2026 - 23:45*

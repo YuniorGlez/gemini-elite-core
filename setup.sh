@@ -262,7 +262,7 @@ if ! check_mcp "filesystem" || gemini mcp list 2>/dev/null | grep -q "modelconte
 
         if [ -f "$BINARY_PATH" ] || command -v "$BINARY_NAME" &> /dev/null; then
             [ -z "$BINARY_PATH" ] && BINARY_PATH=$(command -v "$BINARY_NAME")
-            gemini mcp add --scope user filesystem "$BINARY_PATH" -w "." &> /dev/null || true
+            gemini mcp add --scope user filesystem "$BINARY_PATH" -w "." "~/.gemini/skills" &> /dev/null || true
             success "Rust Filesystem MCP configured."
         else
             info "Falling back to Node.js filesystem..."
