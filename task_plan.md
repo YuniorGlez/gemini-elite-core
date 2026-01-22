@@ -15,7 +15,8 @@ Establish a high-standard strategy for creating powerful skills and refactor all
     - [x] **Step 4.41:** Create `postgres-tuning` skill (PG 18 AIO).
     - [x] **Step 4.42:** Create `voice-ux-pro` skill (Sub-300ms Voice).
     - [x] **Step 4.43:** Create `json-render-expert` skill (Vercel Labs Guardrailed UI).
-    - [x] **Step 4.44: Final Quality Audit & Project Handover**.
+    - [x] **Step 4.44:** Create `remotion-expert` skill (Programmatic Video).
+    - [x] **Step 4.45: Final Quality Audit & Project Handover**.
 
 ## Key Questions
 1. What specific structural elements make the reference repository's skills superior?
