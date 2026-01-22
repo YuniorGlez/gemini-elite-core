@@ -105,21 +105,26 @@
 ### 14. archive-searcher
 - **Status**: COMPLETED (v2.0.0). Professional Git Forensics.
 - **Tasks**:
-- [x] Integrated with Conductor track forensics.
-- [x] Added `scripts/deep-search.sh`.
+    - [x] Integrated with Conductor track forensics.
+    - [x] Added `scripts/deep-search.sh`.
 
-+### 15. gemini-sdk-expert
-+- **Status**: COMPLETED (v1.2.0). ~500+ lines with structured output, function calling, and context caching.
-+- **Tasks**:
-+    - [x] Integrate 2026 multimodal reasoning (Video/Audio).
-+    - [x] Add Context Caching implementation guide.
-+
- ## Priorities: Low (Niche or Stable)
+### 15. gemini-sdk-expert
+- **Status**: COMPLETED (v1.2.0). ~500+ lines with structured output, function calling, and context caching.
+- **Tasks**:
+    - [x] Integrate 2026 multimodal reasoning (Video/Audio).
+    - [x] Add Context Caching implementation guide.
 
+### 16. mcp-expert
+- **Status**: COMPLETED (v1.4.0). ~500+ lines with MCP Apps, Server Dev, and Security.
+- **Tasks**:
+    - [x] Research 2025-11-25 MCP Spec.
+    - [x] Add guides for MCP Apps and interactive UI.
+
+## Priorities: Low (Niche or Stable)
 - [ ] **TLDR-expert**: Add examples for token-efficient file summaries.
 
 ---
 ## Tracking
 - **Total Skills to Refactor**: 42
-- **Completed**: 12
-- **Overall Quality Score**: 28% (Estimated)
+- **Completed**: 13
+- **Overall Quality Score**: 31% (Estimated)
