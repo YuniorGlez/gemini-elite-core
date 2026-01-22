@@ -308,8 +308,32 @@
     - [x] Research Expo SDK 55 and Development Builds.
     - [x] Add guides for Expo Modules SDK and SQLite persistence.
 
+### 48. realtime-sync-pro
+- **Status**: COMPLETED (v1.1.0). ~500+ lines with WebTransport and Ably LiveSync.
+- **Tasks**:
+    - [x] Research 2026 realtime standards.
+    - [x] Add guides for WebTransport, Transactional Outbox, and CRDTs.
+
+### 49. ai-cost-optimizer
+- **Status**: COMPLETED (v1.1.0). ~500+ lines with Gemini 3 economic orchestration.
+- **Tasks**:
+    - [x] Research Gemini 3 Flash/Lite pricing and thinking levels.
+    - [x] Add guides for explicit context caching and usage governance.
+
+### 50. postgres-tuning
+- **Status**: COMPLETED (v1.1.0). ~500+ lines with PostgreSQL 18 AIO standards.
+- **Tasks**:
+    - [x] Research PG 18 AIO and native UUIDv7.
+    - [x] Add guides for query plan analysis and index bloat control.
+
+### 51. voice-ux-pro
+- **Status**: COMPLETED (v1.1.0). ~500+ lines with sub-300ms voice stack.
+- **Tasks**:
+    - [x] Research sub-300ms latency and Spatial Hearing AI.
+    - [x] Add guides for conversational design and voice-haptic sync.
+
 ---
 ## Tracking
 - **Total Skills to Refactor**: 41
-- **Completed**: 47
+- **Completed**: 51
 - **Overall Quality Score**: 85% (Estimated)
