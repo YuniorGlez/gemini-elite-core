@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "The Ultimate Intelligence Layer for Gemini CLI",
-    "subtitle": "Unlock the full power of Gemini v0.26 with advanced agents, lifecycle hooks, and the Conductor protocol for elite engineering.",
+    "subtitle": "Unlock the full power of Gemini v0.27 Nightly with autonomous browsing, multi-agent orchestration, and advanced lifecycle hooks.",
     "cta_setup": "Deploy Core",
     "cta_github": "Explore Source"
   },
@@ -9,19 +9,19 @@
     "title": "Engineered for Professional Excellence",
     "agents": {
       "title": "Autonomous Agents",
-      "desc": "Native integration with codebase_investigator and cli_help for deep repository analysis."
+      "desc": "Native multi-agent orchestration with codebase_investigator and specialized specialist agents."
     },
     "hooks": {
-      "title": "Lifecycle Hooks",
-      "desc": "Automated session management with start triggers and post-tool validation hooks."
+      "title": "Protocol Hooks",
+      "desc": "Strict Elite Core protocols with automated type-checking, commit validation, and session triggers."
     },
     "conductor": {
       "title": "Conductor Protocol",
       "desc": "Structured track management and execution plans for complex software projects."
     },
-    "v26": {
-      "title": "v0.26 Optimized",
-      "desc": "Experimental Plan flags, enhanced security consent, and optimized agent configurations."
+    "browser": {
+      "title": "Web Automation",
+      "desc": "Integrated browser-use MCP for autonomous web navigation, data extraction, and online tasks."
     }
   },
   "install": {

@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "La Capa de Inteligencia Definitiva para Gemini CLI",
-    "subtitle": "Desbloquea todo el poder de Gemini v0.26 con agentes avanzados, hooks de ciclo de vida y el protocolo Conductor.",
+    "subtitle": "Desbloquea todo el poder de Gemini v0.27 Nightly con navegación autónoma, orquestación multi-agente y hooks avanzados.",
     "cta_setup": "Desplegar Core",
     "cta_github": "Explorar Código"
   },
@@ -9,19 +9,19 @@
     "title": "Ingeniería diseñada para la Excelencia",
     "agents": {
       "title": "Agentes Autónomos",
-      "desc": "Integración nativa con codebase_investigator y cli_help para análisis profundo."
+      "desc": "Orquestación multi-agente nativa con codebase_investigator y agentes especialistas dedicados."
     },
     "hooks": {
-      "title": "Hooks de Ciclo de Vida",
-      "desc": "Gestión automatizada de sesiones con disparadores de inicio y validación post-herramienta."
+      "title": "Protocol Hooks",
+      "desc": "Protocolos estrictos Elite Core con type-checking automático, validación de commits y triggers de sesión."
     },
     "conductor": {
       "title": "Protocolo Conductor",
-      "desc": "Gestión estructurada de tracks y planes de ejecución para proyectos complejos."
+      "desc": "Gestión estructurada de tracks y planes de ejecución para proyectos de software complejos."
     },
-    "v26": {
-      "title": "Optimizado v0.26",
-      "desc": "Soporte para Experimental Plan flags y configuraciones de agentes optimizadas."
+    "browser": {
+      "title": "Automatización Web",
+      "desc": "MCP browser-use integrado para navegación autónoma, extracción de datos y tareas online."
     }
   },
   "install": {

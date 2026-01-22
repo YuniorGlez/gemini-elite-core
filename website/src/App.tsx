@@ -1,13 +1,12 @@
 import { useTranslation } from 'react-i18next';
-import { motion, Variants } from 'framer-motion';
-import { TFunction } from 'i18next';
+import { motion, type Variants } from 'framer-motion';
+import type { TFunction } from 'i18next';
 import { 
   Globe, 
   Github, 
   Terminal, 
   Cpu, 
   Zap, 
-  ShieldCheck, 
   Layers,
   Copy,
   Check
@@ -91,7 +90,7 @@ function App() {
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gemini-blue/10 border border-gemini-blue/20 text-gemini-blue text-sm mb-6"
           >
             <Zap size={14} />
-            <span>v2.0.0 Optimized for Gemini 3 Flash Preview</span>
+            <span>v5.6 Optimized for Gemini v0.27 Nightly</span>
           </motion.div>
           
           <motion.h1 
@@ -163,9 +162,9 @@ function App() {
               variants={itemVariants}
             />
             <FeatureCard 
-              icon={<ShieldCheck className="text-gemini-blue" />}
-              title={t('features.v26.title')}
-              desc={t('features.v26.desc')}
+              icon={<Globe className="text-gemini-blue" />}
+              title={t('features.browser.title')}
+              desc={t('features.browser.desc')}
               variants={itemVariants}
             />
           </motion.div>
