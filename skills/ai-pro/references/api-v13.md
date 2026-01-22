@@ -94,4 +94,73 @@ export async function POST(req: Request) {
 | Expansion | String array (untyped) | Typed object paths |
 | Typing | Partial Interfaces | Full Discriminated Unions |
 
+## Complex Scenario: Tiered Subscriptions & Metered Billing
+In v13+, managing complex billing models is significantly cleaner.
+
+```typescript
+async function createMeteredSubscription(customerId: string, priceId: string) {
+  const subscription = await stripe.subscriptions.create({
+    customer: customerId,
+    items: [{ price: priceId }],
+    payment_behavior: 'default_incomplete',
+    payment_settings: { save_default_payment_method: 'on_subscription' },
+    expand: ['latest_invoice.payment_intent'],
+  });
+
+  return subscription;
+}
+
+// Reporting usage for metered billing
+async function reportUsage(subscriptionItemId: string, usage: number) {
+  await stripe.subscriptionItems.createUsageRecord(
+    subscriptionItemId,
+    {
+      quantity: usage,
+      timestamp: Math.floor(Date.now() / 1000),
+      action: 'set',
+    }
+  );
+}
+```
+
+## Handling Post-Payment Actions with Webhooks
+Use the metadata field to pass internal IDs through the Stripe lifecycle.
+
+```typescript
+const session = await stripe.checkout.sessions.create({
+  success_url: 'https://example.com/success',
+  line_items: [{ price: 'price_123', quantity: 1 }],
+  mode: 'subscription',
+  metadata: {
+    userId: 'user_99',
+    planLevel: 'pro_max',
+  },
+});
+```
+
+In the webhook:
+```typescript
+case 'checkout.session.completed':
+  const session = event.data.object as Stripe.Checkout.Session;
+  const { userId, planLevel } = session.metadata!;
+  await db.users.update(userId, { tier: planLevel });
+  break;
+```
+
+## Error Handling Pattern
+```typescript
+try {
+  // Stripe action
+} catch (err) {
+  if (err instanceof Stripe.errors.StripeCardError) {
+    // Show error to your customer
+    console.log(err.message);
+  } else if (err instanceof Stripe.errors.StripeRateLimitError) {
+    // Too many requests made to the API too quickly
+  } else {
+    // General error
+  }
+}
+```
+
 *Updated: January 22, 2026 - 15:20*

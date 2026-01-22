@@ -72,4 +72,57 @@ Always use **Capability-Based Security** for agents.
 - **Caching**: Use semantic caching to avoid re-running expensive o3 calls.
 - **Batching**: Use the OpenAI Batch API for non-urgent research tasks (50% cheaper).
 
+## Long-term Memory for Agents
+Autonomous agents require a way to "remember" previous interactions across sessions without bloating the context window.
+
+### The Vector Memory Pattern
+1. **Extraction**: After each task, an agent summarizes key learnings.
+2. **Embedding**: The summary is converted into a vector.
+3. **Storage**: Saved in a vector DB (e.g., Pinecone, Supabase Vector).
+4. **Retrieval**: Before a new task, the agent queries the DB for relevant past memories.
+
+```typescript
+async function retrieveMemories(query: string) {
+  const embedding = await generateEmbedding(query);
+  const relevantMemories = await vectorDb.search(embedding, { limit: 5 });
+  return relevantMemories.map(m => m.content).join("\n---\n");
+}
+```
+
+## Multi-Agent Orchestration (The "Swarm" Pattern)
+Instead of one giant agent, use multiple specialized agents.
+
+### Example: Feature Implementation Swarm
+- **Architect Agent**: Designs the system and updates `tech-stack.md`.
+- **Engineer Agent**: Writes the code and unit tests.
+- **Reviewer Agent**: Audits the code for security and style.
+- **Manager Agent**: Coordinates the flow and reports to the user.
+
+```typescript
+async function implementFeatureSwarm(featureDescription: string) {
+  const plan = await architect.plan(featureDescription);
+  const code = await engineer.write(plan);
+  const audit = await reviewer.audit(code);
+  
+  if (audit.score > 0.9) {
+    return manager.finalize(code);
+  } else {
+    return engineer.fix(audit.issues);
+  }
+}
+```
+
+## Security: The "Human-in-the-Loop" Gate
+For critical actions, implement a mandatory approval step.
+
+```typescript
+if (task.requiresHighPrivilege) {
+  const approval = await requestUserApproval({
+    action: task.action,
+    rationale: task.reasoning
+  });
+  if (!approval) throw new Error("Action denied by user.");
+}
+```
+
 *Updated: January 22, 2026 - 15:20*
