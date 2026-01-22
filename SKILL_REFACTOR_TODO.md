@@ -117,10 +117,17 @@
 ### 16. mcp-expert
 - **Status**: COMPLETED (v1.4.0). ~500+ lines with MCP Apps, Server Dev, and Security.
 - **Tasks**:
-    - [x] Research 2025-11-25 MCP Spec.
-    - [x] Add guides for MCP Apps and interactive UI.
+- [x] Research 2025-11-25 MCP Spec.
+- [x] Add guides for MCP Apps and interactive UI.
 
-## Priorities: Low (Niche or Stable)
++### 17. commit-sentinel
++- **Status**: COMPLETED (v2.1.0). ~500+ lines with Git 3.0 readiness, rebasing, and bisecting.
++- **Tasks**:
++    - [x] Research Git 3.0 (SHA-256/Rust).
++    - [x] Add guides for advanced rebasing and forensics.
++
+ ## Priorities: Low (Niche or Stable)
+
 - [ ] **TLDR-expert**: Add examples for token-efficient file summaries.
 
 ---

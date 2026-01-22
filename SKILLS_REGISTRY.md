@@ -19,7 +19,7 @@ This table tracks the last update for each skill within the project to ensure te
 | auditor-pro | - | - | ⏳ Pending Refactor |
 | **browser-use-expert** | January 22, 2026 - 16:35 | 1.2.0 | ✅ Refactored |
 | code-architect | - | - | ⏳ Pending Refactor |
-| commit-sentinel | - | - | ⏳ Pending Refactor |
+| **commit-sentinel** | January 22, 2026 - 17:50 | 2.1.0 | ✅ Refactored |
 | context-distiller | - | - | ⏳ Pending Refactor |
 | db-enforcer | - | - | ⏳ Pending Refactor |
 | debug-master | - | - | ⏳ Pending Refactor |
