@@ -246,13 +246,19 @@
      - [x] Research React 19.3 Hydration Sensory Validation.
      - [x] Add guides for Pausable Composition and @use cache patterns.
  
- ## Priorities: Low (Niche or Stable)
+ ### 38. vercel-sync
+- **Status**: COMPLETED (v1.1.0). ~500+ lines with Bun-Vercel orchestration and OIDC.
+- **Tasks**:
+    - [x] Research Bun-Vercel native integration 2026.
+    - [x] Add guides for Zero-Secret OIDC deployments and Edge orchestration.
+
+## Priorities: Low (Niche or Stable)
  
  - [ ] **TLDR-expert**: Add examples for token-efficient file summaries.
  
  ---
  ## Tracking
  - **Total Skills to Refactor**: 41
- - **Completed**: 37
+ - **Completed**: 38
  - **Overall Quality Score**: 83% (Estimated)
  
