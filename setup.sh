@@ -267,7 +267,8 @@ OPTIMIZED_SETTINGS='{
   "enableLLMCorrection": true,
   "experimental": { "introspectionAgentSettings": { "enabled": true },
     "skillCreator": true, "hooks": true, "skills": true, "planning": true, "plan": true,
-    "planningMode": "auto", "planVisualization": true, "requirePlanApproval": false
+    "planningMode": "auto", "planVisualization": true, "requirePlanApproval": false,
+    "eventDrivenScheduler": true
   },
   "agents": {
     "generalist": { "enabled": true, "modelConfig": { "temperature": 0.5, "maxOutputTokens": 4096 }, "runConfig": { "maxTurns": 50, "timeout": 600000 } },
@@ -275,6 +276,15 @@ OPTIMIZED_SETTINGS='{
     "codeReviewer": { "enabled": true, "modelConfig": { "temperature": 0.5, "maxOutputTokens": 2048 }, "runConfig": { "maxTurns": 30, "timeout": 300000 } },
     "bugFixer": { "enabled": true, "modelConfig": { "temperature": 0.2, "maxOutputTokens": 3000 }, "runConfig": { "maxTurns": 50, "timeout": 300000 } },
     "skillCreator": { "enabled": true, "modelConfig": { "temperature": 0.7, "maxOutputTokens": 4096 }, "runConfig": { "maxTurns": 50, "timeout": 600000 } }
+  },
+  "admin": {    
+      "enableAdminControls": true,
+      "skills": { "enabled": true },
+      "mcp": { "enabled": true },
+      "extensions": { "enabled": true }
+    },
+  "performance": {
+    "enableCache": true
   },
   "general": { "previewFeatures": true, "sessionRetention": { "enabled": true }, "enablePromptCompletion": false },
   "context": { "fileFiltering": { "respectGitIgnore": true }, "loadMemoryFromIncludeDirectories": true },
