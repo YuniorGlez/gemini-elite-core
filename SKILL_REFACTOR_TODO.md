@@ -40,11 +40,11 @@
 - **Target**: 500+ lines.
 
 ### 5. zustand-expert (Refactor: Level 8)
-- **Status**: Covers basic SSR provider.
+- **Status**: COMPLETED (v1.2.0). ~400+ lines across SKILL.md and 4 references.
 - **Tasks**:
-    - [ ] Add examples for "Computed Properties" and "Middleware" (Persist, Immer).
-    - [ ] Add `references/testing-stores.md` using Vitest.
-    - [ ] Add pattern for "Slices Pattern" for large stores.
+    - [x] Add examples for "Computed Properties" and "Middleware" (Persist, Immer).
+    - [x] Add `references/testing-stores.md` using Vitest (Integrated in Middleware Ref).
+    - [x] Add pattern for "Slices Pattern" for large stores.
 - **Target**: 400+ lines.
 
 ### 6. prisma-expert (Refactor: Level 8)

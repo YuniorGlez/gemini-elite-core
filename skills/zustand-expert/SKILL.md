@@ -1,54 +1,62 @@
 ---
 name: zustand-expert
 id: zustand-expert
-version: 1.1.0
-description: "Senior State Architect in React 19, specialist in Zustand v5 and SSR Safety."
+version: 1.2.0
+description: "Senior State Architect for React 19 and Next.js 16.1+ applications. Specialist in Zustand v5, SSR-safe stores, and slices pattern for large-scale state management."
 ---
 
 # 🧠 Skill: zustand-expert
 
 ## Description
-Senior state architect for React 19 and Next.js 16 applications. Specialist in safe global state management for SSR (Server-Side Rendering), avoiding state contamination between requests and ensuring client consistency using Zustand v5.
+Senior state architect specializing in Zustand v5 for modern React applications. Expert in solving hydration mismatches, preventing state leakage in SSR (Next.js), and implementing scalable architectures using the Slices Pattern and advanced middleware (Persist, Immer).
 
-## Core Architecture: Context-Based Stores
-In SSR applications (Next.js), stores declared as global Singletons can cause data leaks between users. It is mandatory to use the Provider pattern.
+## Core Priorities
+1.  **SSR Safety (Anti-Singleton)**: Preventing shared state between requests in Next.js by using per-request stores via React Context.
+2.  **Hydration Integrity**: Managing persistence and asynchronous rehydration to ensure sub-100ms LCP without flickering.
+3.  **Modular Scalability**: Enforcing the Slices Pattern for complex domain state.
+4.  **Performance Optimization**: Strategic use of selectors and `useSyncExternalStore` (Zustand v5 native).
 
-### Implementation Blueprint
-```tsx
-// src/providers/store-provider.tsx
-'use client';
-import { createContext, useContext, useRef } from 'react';
-import { useStore } from 'zustand';
-import { createMyStore } from './my-store';
+## 🏆 Top 5 Gains in Zustand v5 (2026)
 
-const StoreContext = createContext(null);
+1.  **Native `useSyncExternalStore`**: Full support for React 18/19 concurrent rendering with zero "tearing" issues.
+2.  **Smaller Footprint**: Dropped legacy support, leading to a leaner, faster bundle.
+3.  **Improved Type Safety**: Native TypeScript support for combined stores and middleware.
+4.  **Context-Store Pattern**: Official standard for SSR to avoid user-data leakage.
+5.  **Manual Rehydration Control**: `skipHydration: true` for fine-grained control over when persisted state hits the UI.
 
-export const StoreProvider = ({ children }) => {
-  const storeRef = useRef(createMyStore());
-  return (
-    <StoreContext.Provider value={storeRef.current}>
-      {children}
-    </StoreContext.Provider>
-  );
-}
+## Table of Contents & Detailed Guides
 
-export const useAppStore = (selector) => {
-  const store = useContext(StoreContext);
-  if (!store) throw new Error('Missing StoreProvider');
-  return useStore(store, selector);
-}
-```
+### 1. [SSR & Next.js 16 Pattern](./references/1-ssr-nextjs.md) — **CRITICAL**
+- The Provider Pattern (Ref-based store creation)
+- Preventing Singleton data leaks
+- Initializing state from Server Props
 
-## Hydration & Persistence
-- **Safety First**: The `persist` middleware with `localStorage` will cause hydration errors if not handled explicitly.
-- **Protocol**: Always implement a hydration hook or use `useSyncExternalStore` to synchronize the persisted state after mounting.
+### 2. [The Slices Pattern](./references/2-slices-pattern.md) — **HIGH**
+- Modularizing large stores
+- Type-safe combined states
+- Sharing state between slices
 
-## The 'Do Not' List
-- **DO NOT** use global stores as Singletons in the root of files if the application uses SSR.
-- **DO NOT** initialize the store state directly from `window` or `document`.
-- **DO NOT** abuse global state; if the state belongs to a single form or local component, use `useState` or React 19's `useActionState`.
+### 3. [Persistence & Hydration](./references/3-persistence.md) — **HIGH**
+- `persist` middleware with `skipHydration`
+- Migration strategies for schema changes
+- Handling Hydration Mismatch in Next.js
 
-## Best Practices
-1. **Selectors**: Always use specific selectors to avoid unnecessary renders (`state => state.value`).
-2. **Actions**: Keep actions (functions that modify state) within the same store for better encapsulation.
-3. **Immutability**: Zustand v5 handles immutability by default, but maintain clarity in nested object updates.
+### 4. [Middleware & Immutability](./references/4-middleware.md) — **MEDIUM**
+- `immer` for complex nested state
+- Custom middleware for logging/analytics
+- Testing stores with Vitest/Jest
+
+## Quick Reference: The "Do's" and "Don'ts"
+
+| **Don't** | **Do** |
+| :--- | :--- |
+| `export const useStore = create(...)` | Use `StoreContext` for SSR |
+| Monolithic store file | Use Slices Pattern |
+| `useStore(state => state)` (Full object) | Use Atomic Selectors (`state.id`) |
+| Direct Mutation | Use `immer` middleware or functional updates |
+| `useEffect` for hydration sync | Use `persist` with `skipHydration` |
+| Store read in RSC | Use Props to pass data to Client Components |
+
+---
+*Optimized for Zustand v5 and React 19.2+.*
+*Updated: January 22, 2026 - 15:03*
