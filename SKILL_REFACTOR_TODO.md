@@ -129,21 +129,26 @@
 ### 18. db-enforcer
 - **Status**: COMPLETED (v2.1.0). ~500+ lines with PostgreSQL 18, Prisma 7, and RLS.
 - **Tasks**:
-- [x] Research PostgreSQL 18 features (UUIDv7, Virtual Columns).
-- [x] Add guides for migration safety and TypedSQL.
+    - [x] Research PostgreSQL 18 features (UUIDv7, Virtual Columns).
+    - [x] Add guides for migration safety and TypedSQL.
 
-+### 19. debug-master
-+- **Status**: COMPLETED (v1.1.0). ~500+ lines with distributed tracing (OTel) and agentic response.
-+- **Tasks**:
-+    - [x] Research 2026 SRE patterns and predictive observability.
-+    - [x] Add guides for OTel and autonomous incident remediation.
-+
- ## Priorities: Low (Niche or Stable)
+### 19. debug-master
+- **Status**: COMPLETED (v1.1.0). ~500+ lines with distributed tracing (OTel) and agentic response.
+- **Tasks**:
+    - [x] Research 2026 SRE patterns and predictive observability.
+    - [x] Add guides for OTel and autonomous incident remediation.
 
+### 20. expert-instruction
+- **Status**: COMPLETED (v1.1.0). ~500+ lines with EGI framework, memory systems, and context engineering.
+- **Tasks**:
+    - [x] Research 2026 agentic instruction protocols (A2A, ACP).
+    - [x] Add guides for cognitive architectures and tiered memory.
+
+## Priorities: Low (Niche or Stable)
 - [ ] **TLDR-expert**: Add examples for token-efficient file summaries.
 
 ---
 ## Tracking
 - **Total Skills to Refactor**: 42
-- **Completed**: 18
-- **Overall Quality Score**: 43% (Estimated)
+- **Completed**: 20
+- **Overall Quality Score**: 48% (Estimated)

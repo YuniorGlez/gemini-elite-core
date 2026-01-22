@@ -29,7 +29,8 @@ Establish a high-standard strategy for creating powerful skills and refactor all
     - [x] **Step 4.15: Refactor `commit-sentinel`**: 500+ lines with Git 3.0 and rebasing.
     - [x] **Step 4.16: Refactor `db-enforcer`**: 500+ lines with PostgreSQL 18 and RLS.
     - [x] **Step 4.17: Refactor `debug-master`**: 500+ lines with distributed tracing and agentic response.
-    - [ ] **Step 4.18: Completion & Commit**: Update plans, report to user, and commit upon approval.
+    - [x] **Step 4.18: Refactor `expert-instruction`**: 500+ lines with EGI and memory systems.
+    - [ ] **Step 4.19: Completion & Commit**: Update plans, report to user, and commit upon approval.
 
 ## Key Questions
 1. What specific structural elements make the reference repository's skills superior?
