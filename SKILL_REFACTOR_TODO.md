@@ -201,10 +201,23 @@
 ### 30. seo-pro
 - **Status**: COMPLETED (v1.1.0). ~500+ lines with SGE optimization and E-E-A-T.
 - **Tasks**:
-    - [x] Research Google SGE and AI Overviews.
-    - [x] Add guides for authoritative content and entity SEO.
+- [x] Research Google SGE and AI Overviews.
+- [x] Add guides for authoritative content and entity SEO.
 
-## Priorities: Low (Niche or Stable)
++### 31. secure-ai
++- **Status**: COMPLETED (v1.1.0). ~500+ lines with Prompt Injection defense and Zero-Trust agents.
++- **Tasks**:
++    - [x] Research 2026 AI security standards.
++    - [x] Add guides for prompt boundaries and agent sandboxing.
++
++### 32. prompt-pro
++- **Status**: COMPLETED (v1.1.0). ~500+ lines with Reasoning model optimization (o3) and ToT.
++- **Tasks**:
++    - [x] Research OpenAI o3 and Gemini 3 Pro reasoning patterns.
++    - [x] Add guides for Tree-of-Thoughts and ReAct loops.
++
+ ## Priorities: Low (Niche or Stable)
+
 - [ ] **TLDR-expert**: Add examples for token-efficient file summaries.
 
 ---
