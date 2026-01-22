@@ -183,10 +183,17 @@
 ### 27. ui-ux-specialist
 - **Status**: COMPLETED (v1.1.0). ~500+ lines with WCAG 2.2 and inclusive patterns.
 - **Tasks**:
-    - [x] Research WCAG 2.2 Level AA success criteria.
-    - [x] Add guides for semantic HTML and inclusive design.
+- [x] Research WCAG 2.2 Level AA success criteria.
+- [x] Add guides for semantic HTML and inclusive design.
 
-## Priorities: Low (Niche or Stable)
++### 28. mobile-pro
++- **Status**: COMPLETED (v1.1.0). ~500+ lines with Expo SDK 54, Fabric, and Worklets.
++- **Tasks**:
++    - [x] Research Expo SDK 54 and iOS 26 Liquid Glass support.
++    - [x] Add guides for Reanimated 4 and React Native New Architecture.
++
+ ## Priorities: Low (Niche or Stable)
+
 - [ ] **TLDR-expert**: Add examples for token-efficient file summaries.
 
 ---

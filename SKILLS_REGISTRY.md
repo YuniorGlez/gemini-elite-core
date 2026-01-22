@@ -31,7 +31,7 @@ This table tracks the last update for each skill within the project to ensure te
 | hydration-guardian | - | - | ⏳ Pending Refactor |
 | manus-expert | - | - | ⏳ Pending Refactor |
 | **mcp-expert** | January 22, 2026 - 17:35 | 1.4.0 | ✅ Refactored |
-| mobile-pro | - | - | ⏳ Pending Refactor |
+| **mobile-pro** | January 22, 2026 - 20:20 | 1.1.0 | ✅ Refactored |
 | pdf-pro | - | - | ⏳ Pending Refactor |
 | product-pro | - | - | ⏳ Pending Refactor |
 | prompt-pro | - | - | ⏳ Pending Refactor |
