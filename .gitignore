@@ -28,6 +28,7 @@ build/
 out/
 .cache/
 tsconfig.tsbuildinfo
+.gemini-clipboard
 
 # Project specific
 repomix-output.*

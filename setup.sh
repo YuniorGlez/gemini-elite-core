@@ -394,9 +394,9 @@ if command -v bun &> /dev/null; then
         }
 
         const hooks = {
-            'SessionStart': [{ 'name': 'welcome', 'type': 'command', 'command': 'bun ' + path.join(hooksDir, 'session-start-welcome.js') }],
+            'SessionStart': [{ 'matcher': '*', 'hooks': [{ 'name': 'welcome', 'type': 'command', 'command': 'bun ' + path.join(hooksDir, 'session-start-welcome.js') }] }],
             'AfterTool': [{ 'matcher': '*', 'hooks': [{ 'name': 'type-check', 'type': 'command', 'command': 'bun ' + path.join(hooksDir, 'after-tool-type-check.js') }] }],
-            'AfterModel': [{ 'name': 'commit-check', 'type': 'command', 'command': 'bun ' + path.join(hooksDir, 'after-model-commit-check.js') }]
+            'AfterModel': [{ 'matcher': '*', 'hooks': [{ 'name': 'commit-check', 'type': 'command', 'command': 'bun ' + path.join(hooksDir, 'after-model-commit-check.js') }] }]
         };
 
         const mcpServers = current.mcpServers || {};
@@ -449,17 +449,25 @@ fi
 
 if [[ "$ADOPT_PROTOCOLS" =~ $YES_REGEX ]]; then
     USER_GEMINI="$HOME/.gemini/GEMINI.md"
-    CURRENT_VERSION="2.3.1"
+    CURRENT_VERSION="2.4.0"
 
     read -r -d '' NEW_BLOCK << 'EOF' || true
 <ELITE_CORE_CONTEXT>
-<!-- VERSION: 2.3.1 -->
+<!-- VERSION: 2.4.0 -->
 # 🚀 Gemini Elite Core - Quick Start Guide (Generalist Edition)
 
-## 🧠 Skill Orchestration (MANDATORY & CRITICAL)
-- **PROACTIVE ACTIVATION**: At the very start of ANY task, I MUST identify and activate ALL relevant tactical skills (`activate_skill`).
-- **NO EXCUSES**: If a skill exists (e.g., `next16-expert`, `db-enforcer`, `tailwind4-expert`, `zustand-expert`), I MUST use it. Failure to activate the appropriate experts before acting is a major protocol violation.
-- **GENERALIST FIRST**: The Generalist Agent is the coordinator, but the experts provide the precision. ALWAYS call the specialists.
+## 🧠 Agentic Delegation & Orchestration (MANDATORY)
+- **GENERALIST FIRST**: You are a Generalist Orchestrator. For complex tasks, you MUST delegate to specialized agents using `delegate_to_agent`.
+- **SKILL CONDUCTOR**: Always activate `conductor-pro` (`activate_skill`) when a task requires coordination between multiple specialized skills or deep workflow planning.
+- **SPECIALISTS**: 
+    - `@codebaseInvestigator`: Use for architectural mapping and deep code analysis.
+    - `@codeReviewer`: Use for refactoring, style checks, and PR reviews.
+    - `@bugFixer`: Use for debugging and test generation.
+- **AUTONOMY**: Do not ask for permission to delegate or activate the conductor if the task clearly benefits from it.
+
+## 🛠️ Skill Orchestration (CRITICAL)
+- **PROACTIVE ACTIVATION**: At the start of ANY task, identify and activate ALL relevant tactical skills (`activate_skill`).
+- **NO EXCUSES**: If a skill exists, use it. Failure to activate experts before acting is a protocol violation.
 
 ## 🛡️ Mandatory Protocols
 
@@ -470,15 +478,7 @@ if [[ "$ADOPT_PROTOCOLS" =~ $YES_REGEX ]]; then
 
 ### 🏗️ Development & Quality
 - **Type Safety**: Always run `bun x tsc --noEmit` after logic changes AND before `bun run build`.
-- **Database Integrity**:
-    - When adding types/enums mapping to DB columns, verify corresponding CHECK constraints.
-    - NEVER execute SQL directly. Generate numbered migrations (e.g., `db/migrations/001_name.sql`).
-- **Migration Naming**: Use 3-digit sequence (001, 002) instead of timestamps.
-
-### 🤖 MIA Model Preferences
-- **Fast/Smart**: `gemini-3-flash-preview`
-- **Lite**: `gemini-flash-lite-latest`
-- **Cerebras**: `zai-glm-4.7`
+- **Database Integrity**: NEVER execute SQL directly. Generate numbered migrations (001_name.sql).
 
 ### 🏁 Task Completion & Git (STRICT)
 - **NO AUTO-COMMIT**: Never perform `git commit` or `git push` automatically.
