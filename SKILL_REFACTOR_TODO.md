@@ -272,8 +272,44 @@
 
 ## Priorities: Low (Niche or Stable)
 
+### 42. php-modern
+- **Status**: COMPLETED (v1.1.0). ~500+ lines with PHP 8.4-8.6 standards.
+- **Tasks**:
+    - [x] Research PHP 8.5/8.6 property hooks and pipe operator.
+    - [x] Add guides for JIT, Rector, and modern patterns.
+
+### 43. laravel-pro
+- **Status**: COMPLETED (v1.1.0). ~500+ lines with Laravel 13 standards.
+- **Tasks**:
+    - [x] Research Laravel 13 features (Cache::touch, concurrency).
+    - [x] Add guides for modular monoliths and hexagonal architecture.
+
+### 44. filament-pro
+- **Status**: COMPLETED (v1.1.0). ~500+ lines with Filament v4 standards.
+- **Tasks**:
+    - [x] Research Filament v4 nested resources and custom sources.
+    - [x] Add guides for TALL stack mastery and panel architecture.
+
+### 45. genai-expert
+- **Status**: COMPLETED (v1.1.0). ~500+ lines with @google/genai v1.35+ standards.
+- **Tasks**:
+    - [x] Research Controlled Output and Gemini 1.5 multimodal.
+    - [x] Add guides for structured intelligence and security.
+
+### 46. react-native-pro
+- **Status**: COMPLETED (v1.1.0). ~500+ lines with RN 0.78+ standards.
+- **Tasks**:
+    - [x] Research RN 0.78 Fabric and React 19 integration.
+    - [x] Add guides for Reanimated 4 and Cross-Platform UX.
+
+### 47. expo-expert
+- **Status**: COMPLETED (v1.1.0). ~500+ lines with Expo SDK 55 standards.
+- **Tasks**:
+    - [x] Research Expo SDK 55 and Development Builds.
+    - [x] Add guides for Expo Modules SDK and SQLite persistence.
+
 ---
 ## Tracking
 - **Total Skills to Refactor**: 41
-- **Completed**: 41
+- **Completed**: 47
 - **Overall Quality Score**: 85% (Estimated)

@@ -24,7 +24,12 @@ This table tracks the last update for each skill within the project to ensure te
 | **db-enforcer** | January 22, 2026 - 18:10 | 2.1.0 | ✅ Refactored |
 | **debug-master** | January 22, 2026 - 18:30 | 1.1.0 | ✅ Refactored |
 | **docs-pro** | January 22, 2026 - 17:05 | 1.1.0 | ✅ Refactored |
-| **expert-instruction** | January 22, 2026 - 18:45 | 1.1.0 | ✅ Refactored |
+| **expo-expert** | January 22, 2026 - 23:35 | 1.1.0 | ✅ Created |
+| **filament-pro** | January 22, 2026 - 23:20 | 1.1.0 | ✅ Created |
+| **genai-expert** | January 22, 2026 - 23:25 | 1.1.0 | ✅ Created |
+| **laravel-pro** | January 22, 2026 - 23:15 | 1.1.0 | ✅ Created |
+| **php-modern** | January 22, 2026 - 23:10 | 1.1.0 | ✅ Created |
+| **react-native-pro** | January 22, 2026 - 23:30 | 1.1.0 | ✅ Created |
 | **gemini-sdk-expert** | January 22, 2026 - 17:20 | 1.2.0 | ✅ Refactored |
 | **git-flow** | January 22, 2026 - 19:10 | 1.1.0 | ✅ Refactored |
 | **git-pro** | January 22, 2026 - 19:10 | 2.1.0 | ✅ Refactored |
