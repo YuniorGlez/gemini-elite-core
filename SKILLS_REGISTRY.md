@@ -22,7 +22,7 @@ This table tracks the last update for each skill within the project to ensure te
 | **commit-sentinel** | January 22, 2026 - 17:50 | 2.1.0 | ✅ Refactored |
 | context-distiller | - | - | ⏳ Pending Refactor |
 | **db-enforcer** | January 22, 2026 - 18:10 | 2.1.0 | ✅ Refactored |
-| debug-master | - | - | ⏳ Pending Refactor |
+| **debug-master** | January 22, 2026 - 18:30 | 1.1.0 | ✅ Refactored |
 | **docs-pro** | January 22, 2026 - 17:05 | 1.1.0 | ✅ Refactored |
 | expert-instruction | - | - | ⏳ Pending Refactor |
 | **gemini-sdk-expert** | January 22, 2026 - 17:20 | 1.2.0 | ✅ Refactored |

@@ -129,10 +129,17 @@
 ### 18. db-enforcer
 - **Status**: COMPLETED (v2.1.0). ~500+ lines with PostgreSQL 18, Prisma 7, and RLS.
 - **Tasks**:
-    - [x] Research PostgreSQL 18 features (UUIDv7, Virtual Columns).
-    - [x] Add guides for migration safety and TypedSQL.
+- [x] Research PostgreSQL 18 features (UUIDv7, Virtual Columns).
+- [x] Add guides for migration safety and TypedSQL.
 
-## Priorities: Low (Niche or Stable)
++### 19. debug-master
++- **Status**: COMPLETED (v1.1.0). ~500+ lines with distributed tracing (OTel) and agentic response.
++- **Tasks**:
++    - [x] Research 2026 SRE patterns and predictive observability.
++    - [x] Add guides for OTel and autonomous incident remediation.
++
+ ## Priorities: Low (Niche or Stable)
+
 - [ ] **TLDR-expert**: Add examples for token-efficient file summaries.
 
 ---
