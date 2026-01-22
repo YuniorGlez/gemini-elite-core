@@ -20,7 +20,7 @@ This table tracks the last update for each skill within the project to ensure te
 | **browser-use-expert** | January 22, 2026 - 16:35 | 1.2.0 | ✅ Refactored |
 | **code-architect** | January 22, 2026 - 19:20 | 1.1.0 | ✅ Refactored |
 | **commit-sentinel** | January 22, 2026 - 17:50 | 2.1.0 | ✅ Refactored |
-| context-distiller | - | - | ⏳ Pending Refactor |
+| **context-distiller** | January 22, 2026 - 21:40 | 1.1.0 | ✅ Refactored |
 | **db-enforcer** | January 22, 2026 - 18:10 | 2.1.0 | ✅ Refactored |
 | **debug-master** | January 22, 2026 - 18:30 | 1.1.0 | ✅ Refactored |
 | **docs-pro** | January 22, 2026 - 17:05 | 1.1.0 | ✅ Refactored |
@@ -40,7 +40,7 @@ This table tracks the last update for each skill within the project to ensure te
 | **stagehand-expert** | January 22, 2026 - 21:20 | 4.1.0 | ✅ Refactored |
 | **strict-auditor** | January 22, 2026 - 19:45 | 2.1.0 | ✅ Refactored |
 | tldr-expert | - | - | ⏳ Pending Refactor |
-| track-master | - | - | ⏳ Pending Refactor |
+| **track-master** | January 22, 2026 - 21:35 | 1.1.0 | ✅ Refactored |
 | **ui-ux-pro** | January 22, 2026 - 20:00 | 1.1.0 | ✅ Refactored |
 | **ui-ux-specialist** | January 22, 2026 - 20:05 | 1.1.0 | ✅ Refactored |
 | utility-pro | - | - | ⏳ Pending Refactor |

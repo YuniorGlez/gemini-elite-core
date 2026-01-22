@@ -225,10 +225,23 @@
 ### 34. stagehand-expert
 - **Status**: COMPLETED (v4.1.0). ~500+ lines with Direct CDP and Agent Caching.
 - **Tasks**:
-    - [x] Research Stagehand V3 CDP communication.
-    - [x] Add guides for decision caching and shadow DOM mastery.
+- [x] Research Stagehand V3 CDP communication.
+- [x] Add guides for decision caching and shadow DOM mastery.
 
-## Priorities: Low (Niche or Stable)
++### 35. track-master
++- **Status**: COMPLETED (v1.1.0). ~500+ lines with Predictive Tracking and Conductor Architecture.
++- **Tasks**:
++    - [x] Research AI-native project tracking.
++    - [x] Add guides for risk metrics and agentic milestones.
++
++### 36. context-distiller
++- **Status**: COMPLETED (v1.1.0). ~500+ lines with Automated Context Packing and Symbol Indexing.
++- **Tasks**:
++    - [x] Research Repomix and gitingest optimization.
++    - [x] Add guides for symbolic project mapping and memory rehydration.
++
+ ## Priorities: Low (Niche or Stable)
+
 - [ ] **TLDR-expert**: Add examples for token-efficient file summaries.
 
 ---
