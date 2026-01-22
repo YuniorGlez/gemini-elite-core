@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Gemini Elite Core Setup Script - v5.5 "Skill Mastery Edition"
-# Optimized for Gemini CLI v0.26.0+ (Nightly 20260119)
+# Gemini Elite Core Setup Script - v5.6 "Skill Mastery Edition"
+# Optimized for Gemini CLI v0.27.0+ (Nightly 20260122)
 # CLI + Skills + Generalist Agent + Planning Policies
 
 set -e
@@ -36,12 +36,13 @@ fi
 
 # Translations
 if [[ "$SELECTED_LANG" == "ES" ]]; then
-    MSG_TITLE="Gemini Elite Core v5.5"
+    MSG_TITLE="Gemini Elite Core v5.6"
     MSG_SUBTITLE="La suite de aprovisionamiento inteligente (Skill Mastery Update)"
     MSG_STEP_CHECK_CLI="Comprobando Gemini CLI..."
     MSG_WARN_CLI_NOT_FOUND="Gemini CLI no detectado. Instalando versión @nightly..."
     MSG_SUCCESS_CLI_INSTALLED="Gemini CLI instalado."
     MSG_SUCCESS_CLI_DETECTED="Gemini CLI detectado."
+    MSG_INFO_UPDATING_CLI="Actualizando Gemini CLI a la última versión @nightly..."
     MSG_SEC_CONFIG="Configuración de Seguridad:"
     MSG_ENTER_API_KEY="Introduce tu Gemini API Key (o pulsa Enter para omitir): "
     MSG_SAVE_PERM="¿Guardar permanentemente en la configuración de tu shell? (s/n): "
@@ -67,19 +68,20 @@ if [[ "$SELECTED_LANG" == "ES" ]]; then
     MSG_SUCCESS_GEMINI_MD="GEMINI.md global actualizado con protocolos Elite Core."
     MSG_INFO_SKIP_GEMINI="Omitiendo actualización de GEMINI.md. Aún puedes usar las habilidades manualmente."
     MSG_FINISH="¡Aprovisionamiento de Gemini Elite Core completado!"
-    MSG_STATUS_CLI="CLI: Nightly (v0.26.0-nightly.20260119)"
+    MSG_STATUS_CLI="CLI: Nightly (v0.27.0-nightly.20260122)"
     MSG_STATUS_AGENTS="Agentes: Generalist + Especialistas (Activos)"
-    MSG_STATUS_PLANNING="Planificación: Habilitada (Experimental)"
-    MSG_STATUS_SKILLS="Habilidades: Desplegadas (25+ MDs Tácticos)"
-    MSG_STATUS_HOOKS="Hooks: Monitoreo activo"
+    MSG_STATUS_PLANNING="Planificación: Interactive Mode (v0.27)"
+    MSG_STATUS_SKILLS="Habilidades: Desplegadas (Code Reviewer +)"
+    MSG_STATUS_HOOKS="Hooks: System Active"
     YES_REGEX="^[Ss]?$"
 else
-    MSG_TITLE="Gemini Elite Core v5.5"
+    MSG_TITLE="Gemini Elite Core v5.6"
     MSG_SUBTITLE="The Intelligent Provisioning Suite (Skill Mastery Update)"
     MSG_STEP_CHECK_CLI="Checking Gemini CLI..."
     MSG_WARN_CLI_NOT_FOUND="Gemini CLI not detected. Installing @nightly version..."
     MSG_SUCCESS_CLI_INSTALLED="Gemini CLI installed."
     MSG_SUCCESS_CLI_DETECTED="Gemini CLI detected."
+    MSG_INFO_UPDATING_CLI="Updating Gemini CLI to the latest @nightly version..."
     MSG_SEC_CONFIG="Security Configuration:"
     MSG_ENTER_API_KEY="Enter your Gemini API Key (or press Enter to skip): "
     MSG_SAVE_PERM="Save permanently in your shell config? (y/n): "
@@ -105,11 +107,11 @@ else
     MSG_SUCCESS_GEMINI_MD="Global GEMINI.md updated with Elite Core protocols."
     MSG_INFO_SKIP_GEMINI="Skipping GEMINI.md update. You can still use the skills manually."
     MSG_FINISH="Gemini Elite Core Provisioning Complete!"
-    MSG_STATUS_CLI="CLI: Nightly (v0.26.0-nightly.20260119)"
+    MSG_STATUS_CLI="CLI: Nightly (v0.27.0-nightly.20260122)"
     MSG_STATUS_AGENTS="Agents: Generalist + Specialists (Active)"
-    MSG_STATUS_PLANNING="Planning: Enabled (Experimental)"
-    MSG_STATUS_SKILLS="Skills: Deployed (40+ Tactical MDs)"
-    MSG_STATUS_HOOKS="Hooks: Monitoring active"
+    MSG_STATUS_PLANNING="Planning: Interactive Mode (v0.27)"
+    MSG_STATUS_SKILLS="Skills: Deployed (Code Reviewer +)"
+    MSG_STATUS_HOOKS="Hooks: System Active"
     YES_REGEX="^[Yy]?$"
 fi
 
@@ -119,17 +121,18 @@ echo -e "${CYAN}${MSG_SUBTITLE}${NC}\n"
 
 # 1. Verification and Installation of Gemini CLI
 step "$MSG_STEP_CHECK_CLI"
-if ! command -v gemini &> /dev/null; then
-    warn "$MSG_WARN_CLI_NOT_FOUND"
-    if command -v bun &> /dev/null; then
-        bun install -g @google/gemini-cli@nightly > /dev/null
-    else
-        npm install -g @google/gemini-cli@nightly > /dev/null
-    fi
-    success "$MSG_SUCCESS_CLI_INSTALLED"
+if command -v gemini &> /dev/null; then
+    info "$MSG_INFO_UPDATING_CLI"
 else
-    success "$MSG_SUCCESS_CLI_DETECTED"
+    warn "$MSG_WARN_CLI_NOT_FOUND"
 fi
+
+if command -v bun &> /dev/null; then
+    bun install -g @google/gemini-cli@nightly > /dev/null
+else
+    npm install -g @google/gemini-cli@nightly > /dev/null
+fi
+success "$MSG_SUCCESS_CLI_INSTALLED"
 
 # 2. API KEY Configuration
 if [ -z "$GEMINI_API_KEY" ]; then
@@ -264,11 +267,30 @@ cp hooks/*.js "$HOOKS_DIR/"
 
 OPTIMIZED_SETTINGS='{
   "enableAgentSkills": true,
-  "enableLLMCorrection": true,
-  "experimental": { "introspectionAgentSettings": { "enabled": true },
-    "skillCreator": true, "hooks": true, "skills": true, "planning": true, "plan": true,
-    "planningMode": "auto", "planVisualization": true, "requirePlanApproval": false,
+  "core": {
+    "disableLLMCorrection": true
+  },
+  "skills": {
+    "enabled": true,
+    "codeReviewer": {
+      "enabled": true
+    }
+  },
+  "experimental": { 
+    "introspectionAgentSettings": { "enabled": true },
+    "skillCreator": true, 
+    "hooks": true,
+    "hooksSystem": true,
+    "skills": true, 
+    "planning": true, 
+    "plan": true,
+    "planningMode": "auto", 
+    "planVisualization": true, 
+    "requirePlanApproval": false,
     "eventDrivenScheduler": true
+  },
+  "plan": {
+    "approvalMode": "interactive"
   },
   "agents": {
     "generalist": { "enabled": true, "modelConfig": { "temperature": 0.5, "maxOutputTokens": 4096 }, "runConfig": { "maxTurns": 50, "timeout": 600000 } },
@@ -288,7 +310,7 @@ OPTIMIZED_SETTINGS='{
   },
   "general": { "previewFeatures": true, "sessionRetention": { "enabled": true }, "enablePromptCompletion": false },
   "context": { "fileFiltering": { "respectGitIgnore": true }, "loadMemoryFromIncludeDirectories": true },
-  "model": { "compressionThreshold": 0.90 },
+  "model": { "compressionThreshold": 0.90, "name": "gemini-3-flash-preview" },
   "tools": { "shell": { "showColor": true }, "autoAccept": true },
   "ui": { "footer": { "hideContextPercentage": false }, "showMemoryUsage": true, "showModelInfoInChat": false, "showLineNumbers": false }
 }'
