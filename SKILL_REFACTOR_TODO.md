@@ -258,6 +258,12 @@
     - [x] Research AI-driven PDF extraction and PDF 2.0 standards.
     - [x] Add guides for high-fidelity Puppeteer generation and legacy Python utilities.
 
+### 40. utility-pro
+- **Status**: COMPLETED (v1.1.0). ~500+ lines with Modern Unix toolbox and Nushell.
+- **Tasks**:
+    - [x] Research 2026 developer utility trends (Nushell, rg, bat).
+    - [x] Add guides for advanced RegEx, jq, and structured data transformation.
+
 ## Priorities: Low (Niche or Stable)
  
  - [ ] **TLDR-expert**: Add examples for token-efficient file summaries.
@@ -265,6 +271,6 @@
  ---
  ## Tracking
  - **Total Skills to Refactor**: 41
- - **Completed**: 39
+ - **Completed**: 40
  - **Overall Quality Score**: 83% (Estimated)
  

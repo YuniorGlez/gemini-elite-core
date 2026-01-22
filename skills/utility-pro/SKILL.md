@@ -1,160 +1,126 @@
 ---
-name: planning-with-files
-description: Transforms workflow to use Manus-style persistent markdown files for planning, progress tracking, and knowledge storage. Use when starting complex tasks, multi-step projects, research tasks, or when the user mentions planning, organizing work, tracking progress, or wants structured output.
+name: utility-pro
+id: utility-pro
+version: 1.1.0
+description: "Master of the Modern Utility Toolbelt, specialized in AI-enhanced CLI, structured data transformation, and advanced Unix forensics."
+last_updated: "2026-01-22"
 ---
 
-# Planning with Files
+# Skill: Utility Pro (Standard 2026)
 
-Work like Manus: Use persistent markdown files as your "working memory on disk."
+**Role:** The Utility Pro is the "Swiss Army Knife" of the Squaads AI Core. This role masters the command-line environment, turning raw text and unstructured data into actionable insights and clean code. In 2026, the Utility Pro moves beyond simple `grep` and `sed` to embrace structured shells (Nushell), AI-augmented terminals, and Rust-powered performance utilities.
 
-## Quick Start
+## 🎯 Primary Objectives
+1.  **Structured Data Mastery:** Treat the terminal as a database using Nushell and `jq`.
+2.  **High-Performance Search:** Use `ripgrep` (rg) and `fzf` for near-instant codebase navigation.
+3.  **Advanced Transformation:** Master RegEx, `awk`, and `sed` for complex multi-file refactoring.
+4.  **Modern Web I/O:** Use `httpie` and `xh` for high-fidelity API interaction and debugging.
 
-Before ANY complex task:
+---
 
-1. **Create `task_plan.md`** in the working directory
-2. **Define phases** with checkboxes
-3. **Update after each phase** - mark [x] and change status
-4. **Read before deciding** - refresh goals in attention window
+## 🏗️ The 2026 Utility Stack
 
-## The 3-File Pattern
+### 1. The Core Moderns (Rust-Powered)
+- **ripgrep (rg):** The gold standard for text search.
+- **bat:** Syntax-highlighted `cat` replacement.
+- **eza:** Metadata-rich `ls` replacement with tree views.
+- **zoxide:** Intelligence-driven directory jumping (`z`).
+- **fd:** Simple, fast alternative to `find`.
 
-For every non-trivial task, create THREE files:
+### 2. Data Transformation & Shells
+- **Nushell:** A modern shell that understands JSON, CSV, and YAML as tables.
+- **jq / yq:** The industry standard for JSON and YAML query and manipulation.
+- **httpie / xh:** User-friendly, colorized HTTP clients.
 
-| File | Purpose | When to Update |
-|------|---------|----------------|
-| `task_plan.md` | Track phases and progress | After each phase |
-| `notes.md` | Store findings and research | During research |
-| `[deliverable].md` | Final output | At completion |
+---
 
-## Core Workflow
+## 🛠️ Implementation Patterns
 
-```
-Loop 1: Create task_plan.md with goal and phases
-Loop 2: Research → save to notes.md → update task_plan.md
-Loop 3: Read notes.md → create deliverable → update task_plan.md
-Loop 4: Deliver final output
-```
+### 1. The "Code Forensic" Search
+When diagnosing a bug across a massive monorepo, use `ripgrep` with advanced filtering.
 
-### The Loop in Detail
-
-**Before each major action:**
 ```bash
-Read task_plan.md  # Refresh goals in attention window
+# Search for 'auth-error' but only in TSX files, excluding tests
+rg "auth-error" -g "*.tsx" -g "!*.test.*" --stats
+
+# Find all 'TODO' comments and export them to a JSON table (Nushell)
+rg "TODO" --json | from json | select data.path.text data.lines.text
 ```
 
-**After each phase:**
+### 2. Complex Multi-File Refactoring
+Using `sed` and `fd` to rename an exported symbol across the entire project.
+
 ```bash
-Edit task_plan.md  # Mark [x], update status
+# Rename 'OldComponent' to 'NewComponent' in all .tsx files
+fd -e tsx -x sed -i 's/OldComponent/NewComponent/g' {}
 ```
 
-**When storing information:**
+### 3. API Debugging with `xh`
 ```bash
-Write notes.md     # Don't stuff context, store in file
+# POST a JSON payload with headers and follow redirects
+xh POST api.squaads.com/v1/sync \
+  Authorization:"Bearer $TOKEN" \
+  name="Project X" \
+  active:=true
 ```
 
-## task_plan.md Template
+---
 
-Create this file FIRST for any complex task:
+## 🔍 Advanced RegEx & Data Logic (2026)
 
-```markdown
-# Task Plan: [Brief Description]
+### RegEx Best Practices
+- **Prefer Non-Capturing Groups `(?:...)`:** Improves performance in large-scale scans.
+- **Atomic Grouping:** Prevent catastrophic backtracking in complex patterns.
+- **Named Captures:** Make your RegEx readable for other agents.
+  `(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})`
 
-## Goal
-[One sentence describing the end state]
-
-## Phases
-- [ ] Phase 1: Plan and setup
-- [ ] Phase 2: Research/gather information
-- [ ] Phase 3: Execute/build
-- [ ] Phase 4: Review and deliver
-
-## Key Questions
-1. [Question to answer]
-2. [Question to answer]
-
-## Decisions Made
-- [Decision]: [Rationale]
-
-## Errors Encountered
-- [Error]: [Resolution]
-
-## Status
-**Currently in Phase X** - [What I'm doing now]
+### The `jq` Power User
+```bash
+# Extract IDs from a nested JSON array where status is 'active'
+cat data.json | jq '.projects[] | select(.status == "active") | .id'
 ```
 
-## notes.md Template
+---
 
-For research and findings:
+## 🚫 The "Do Not List" (Anti-Patterns)
+1.  **NEVER** use `grep` when `rg` is available; the performance difference is 10x-100x.
+2.  **NEVER** pipe `ls` into `grep`. Use `fd` or `eza --filter`.
+3.  **NEVER** write a complex `awk` script if a 3-line Nushell command can do it with structured data.
+4.  **NEVER** use `rm -rf` in a script without a dry-run or verification step (Safety First).
 
-```markdown
-# Notes: [Topic]
+---
 
-## Sources
+## 🛠️ Troubleshooting Guide
 
-### Source 1: [Name]
-- URL: [link]
-- Key points:
-  - [Finding]
-  - [Finding]
+| Issue | Likely Cause | 2026 Corrective Action |
+| :--- | :--- | :--- |
+| **Search is too slow** | Searching `node_modules` or `.git` | Use `rg` which respects `.gitignore` by default. |
+| **JSON parse error** | Trailing commas or invalid spec | Use `jq -c` to minify or `yq` for more lenient parsing. |
+| **RegEx not matching** | Escaping differences (PCRE vs JS) | Use `rg -P` for Perl-Compatible Regular Expressions. |
+| **Terminal output garbled** | Binary file cat or encoding mismatch | Use `bat -A` to show non-printable characters. |
 
-## Synthesized Findings
+---
 
-### [Category]
-- [Finding]
-- [Finding]
-```
+## 📚 Reference Library
+- **[Modern Unix Toolbox](./references/1-modern-unix-toolbox.md):** Deep dive into Rust-powered CLI tools.
+- **[Advanced RegEx & jq](./references/2-advanced-regex-and-jq.md):** Mastering the math of text manipulation.
+- **[Nushell Mastery](./references/3-nushell-structured-data.md):** Using the shell as a structured data engine.
 
-## Critical Rules
+---
 
-### 1. ALWAYS Create Plan First
-Never start a complex task without `task_plan.md`. This is non-negotiable.
+## 📜 Standard Operating Procedure (SOP)
+1.  **Identify Data Source:** Is it a file, a stream, or an API?
+2.  **Select Filter:** Use `rg` for text, `jq` for JSON, `xh` for HTTP.
+3.  **Pipe & Transform:** Build a pipeline (e.g., `xh | jq | rg`).
+4.  **Verify:** Check the output against a small sample.
+5.  **Automate:** Save the pipeline as a Bun script or a Nushell function.
 
-### 2. Read Before Decide
-Before any major decision, read the plan file. This keeps goals in your attention window.
+---
 
-### 3. Update After Act
-After completing any phase, immediately update the plan file:
-- Mark completed phases with [x]
-- Update the Status section
-- Log any errors encountered
+## 🔄 Evolution from v0.x to v1.1.0
+- **v1.0.0:** Legacy `planning-with-files` clone (Inaccurate).
+- **v1.1.0:** Complete ground-up rebuild focusing on 2026 High-Performance Utilities and Structured Data.
 
-### 4. Store, Don't Stuff
-Large outputs go to files, not context. Keep only paths in working memory.
+---
 
-### 5. Log All Errors
-Every error goes in the "Errors Encountered" section. This builds knowledge for future tasks.
-
-## When to Use This Pattern
-
-**Use 3-file pattern for:**
-- Multi-step tasks (3+ steps)
-- Research tasks
-- Building/creating something
-- Tasks spanning multiple tool calls
-- Anything requiring organization
-
-**Skip for:**
-- Simple questions
-- Single-file edits
-- Quick lookups
-
-## Anti-Patterns to Avoid
-
-| Don't | Do Instead |
-|-------|------------|
-| Use TodoWrite for persistence | Create `task_plan.md` file |
-| State goals once and forget | Re-read plan before each decision |
-| Hide errors and retry | Log errors to plan file |
-| Stuff everything in context | Store large content in files |
-| Start executing immediately | Create plan file FIRST |
-
-## Advanced Patterns
-
-See [reference.md](reference.md) for:
-- Attention manipulation techniques
-- Error recovery patterns
-- Context optimization from Manus
-
-See [examples.md](examples.md) for:
-- Real task examples
-- Complex workflow patterns
+**End of Utility Pro Standard (v1.1.0)**
