@@ -54,6 +54,7 @@ This table tracks the last update for each skill within the project to ensure te
 | **stagehand-expert** | January 22, 2026 - 21:20 | 4.1.0 | ✅ Refactored |
 | **strict-auditor** | January 22, 2026 - 19:45 | 2.1.0 | ✅ Refactored |
 | **stripe-expert** | January 23, 2026 - 17:40 | 1.0.0 | ✅ Created |
+| **subagent-orchestrator** | January 23, 2026 - 19:15 | 1.0.0 | ✅ Created |
 | **supabase-expert** | January 22, 2026 - 14:59 | 1.2.0 | ✅ Refactored |
 | **tailwind4-expert** | January 22, 2026 - 14:59 | 1.2.0 | ✅ Refactored |
 | **threejs-expert** | January 23, 2026 - 15:55 | 1.0.0 | ✅ Created |
@@ -67,4 +68,4 @@ This table tracks the last update for each skill within the project to ensure te
 | **voice-ux-pro** | January 23, 2026 - 00:05 | 1.1.0 | ✅ Created |
 | **zustand-expert** | January 22, 2026 - 15:03 | 1.2.0 | ✅ Refactored |
 
-*Total Skills tracked: 61*
+*Total Skills tracked: 62*

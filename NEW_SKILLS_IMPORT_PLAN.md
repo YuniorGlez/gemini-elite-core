@@ -85,10 +85,10 @@ Para cada skill, seguiré este flujo de trabajo para garantizar que no solo impo
     - [x] Análisis de similitud y búsqueda en fuente.
     - [x] Seguridad OIDC y Hardened Runners.
     - [x] Creación de estructura.
-- [ ] **9. `subagent-orchestrator`**
-    - [ ] Análisis de similitud (mezclar con `conductor-pro`).
-    - [ ] Protocolos de comunicación inter-agente.
-    - [ ] Creación de estructura.
+- [x] **9. `subagent-orchestrator`**
+    - [x] Análisis de similitud (mezclar con `conductor-pro`).
+    - [x] Protocolos de comunicación inter-agente.
+    - [x] Creación de estructura.
 - [ ] **10. `c4-architect`**
     - [ ] Análisis de similitud y búsqueda en fuente.
     - [ ] Generación automática de diagramas C4.
