@@ -105,10 +105,10 @@ Para cada skill, seguiré este flujo de trabajo para garantizar que no solo impo
     - [x] Análisis de similitud y búsqueda en fuente.
     - [x] Estrategias de CRO y analítica 2026.
     - [x] Creación de estructura.
-- [ ] **14. `programmatic-seo-pro`**
-    - [ ] Análisis de similitud (mezclar con `seo-pro`).
-    - [ ] Generación de contenido con IA y Schema.org.
-    - [ ] Creación de estructura.
+- [x] **14. `programmatic-seo-pro`**
+    - [x] Análisis de similitud (mezclar con `seo-pro`).
+    - [x] Generación de contenido con IA y Schema.org.
+    - [x] Creación de estructura.
 - [ ] **15. `e2e-testing-expert`**
     - [ ] Análisis de similitud y búsqueda en fuente.
     - [ ] Playwright con visual testing y tracing.

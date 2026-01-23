@@ -47,6 +47,7 @@ This table tracks the last update for each skill within the project to ensure te
 | **postgres-tuning** | January 22, 2026 - 23:55 | 1.1.0 | ✅ Created |
 | **prisma-expert** | January 22, 2026 - 15:07 | 1.2.0 | ✅ Refactored |
 | **product-pro** | January 22, 2026 - 20:30 | 1.1.0 | ✅ Refactored |
+| **programmatic-seo-pro** | January 23, 2026 - 20:35 | 1.0.0 | ✅ Created |
 | **prompt-pro** | January 22, 2026 - 21:00 | 1.1.0 | ✅ Refactored |
 | **react-expert** | January 22, 2026 - 14:59 | 1.2.0 | ✅ Refactored |
 | **react-native-pro** | January 22, 2026 - 23:30 | 1.1.0 | ✅ Created |
@@ -72,4 +73,4 @@ This table tracks the last update for each skill within the project to ensure te
 | **voice-ux-pro** | January 23, 2026 - 00:05 | 1.1.0 | ✅ Created |
 | **zustand-expert** | January 22, 2026 - 15:03 | 1.2.0 | ✅ Refactored |
 
-*Total Skills tracked: 66*
+*Total Skills tracked: 67*
