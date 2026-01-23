@@ -113,10 +113,10 @@ Para cada skill, seguiré este flujo de trabajo para garantizar que no solo impo
     - [x] Análisis de similitud y búsqueda en fuente.
     - [x] Playwright con visual testing y tracing.
     - [x] Creación de estructura.
-- [ ] **16. `security-audit-pro`**
-    - [ ] Análisis de similitud (mezclar con `auditor-pro`).
-    - [ ] Auditoría de RLS y dependencias.
-    - [ ] Creación de estructura.
+- [x] **16. `security-audit-pro`**
+    - [x] Análisis de similitud (mezclar con `auditor-pro`).
+    - [x] Auditoría de RLS y dependencias.
+    - [x] Creación de estructura.
 - [ ] **17. `humanizer-pro`**
     - [ ] Análisis de similitud y búsqueda en fuente.
     - [ ] Refinamiento de tono y estilo natural.
