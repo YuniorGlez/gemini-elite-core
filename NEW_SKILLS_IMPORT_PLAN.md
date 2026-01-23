@@ -121,10 +121,10 @@ Para cada skill, seguiré este flujo de trabajo para garantizar que no solo impo
     - [x] Análisis de similitud y búsqueda en fuente.
     - [x] Refinamiento de tono y estilo natural.
     - [x] Creación de estructura.
-- [ ] **18. `scrum-conductor`**
-    - [ ] Análisis de similitud (mezclar con `track-master`).
-    - [ ] Gestión de tickets y sprints automáticos.
-    - [ ] Creación de estructura.
+- [x] **18. `scrum-conductor`**
+    - [x] Análisis de similitud (mezclar con `track-master`).
+    - [x] Gestión de tickets y sprints automáticos.
+    - [x] Creación de estructura.
 - [ ] **19. `code-review-pro`**
     - [ ] Análisis de similitud y búsqueda en fuente.
     - [ ] Auditoría de performance y deuda técnica.
