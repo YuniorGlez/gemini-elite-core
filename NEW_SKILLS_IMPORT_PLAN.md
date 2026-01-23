@@ -57,10 +57,10 @@ Para cada skill, seguiré este flujo de trabajo para garantizar que no solo impo
     - [x] Análisis de similitud y búsqueda exhaustiva en fuente.
     - [x] Actualización a WebGPU/WebGL 2026.
     - [x] Creación de estructura y merge de contenidos.
-- [ ] **2. `convex-pro`**
-    - [ ] Análisis de similitud y búsqueda exhaustiva en fuente.
-    - [ ] Actualización a Convex v2+ (RLS y Auth dinámico).
-    - [ ] Creación de estructura y merge de contenidos.
+- [x] **2. `convex-pro`**
+    - [x] Análisis de similitud y búsqueda exhaustiva en fuente.
+    - [x] Actualización a Convex v2+ (RLS y Auth dinámico).
+    - [x] Creación de estructura y merge de contenidos.
 - [ ] **3. `tanstack-query-expert`**
     - [ ] Análisis de similitud (¿mezclar con `react-expert`?).
     - [ ] Optimización de caché y Server Actions integration.
