@@ -101,10 +101,10 @@ Para cada skill, seguiré este flujo de trabajo para garantizar que no solo impo
     - [x] Análisis de similitud y búsqueda en fuente.
     - [x] Soporte para diagramas de secuencia complejos.
     - [x] Creación de estructura.
-- [ ] **13. `marketing-expert`**
-    - [ ] Análisis de similitud y búsqueda en fuente.
-    - [ ] Estrategias de CRO y analítica 2026.
-    - [ ] Creación de estructura.
+- [x] **13. `marketing-expert`**
+    - [x] Análisis de similitud y búsqueda en fuente.
+    - [x] Estrategias de CRO y analítica 2026.
+    - [x] Creación de estructura.
 - [ ] **14. `programmatic-seo-pro`**
     - [ ] Análisis de similitud (mezclar con `seo-pro`).
     - [ ] Generación de contenido con IA y Schema.org.
