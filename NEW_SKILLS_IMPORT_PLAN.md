@@ -97,10 +97,10 @@ Para cada skill, seguiré este flujo de trabajo para garantizar que no solo impo
     - [x] Análisis de similitud y búsqueda en fuente.
     - [x] Generación de clientes Type-safe (Zod/Fetch).
     - [x] Creación de estructura.
-- [ ] **12. `mermaid-diagram-pro`**
-    - [ ] Análisis de similitud y búsqueda en fuente.
-    - [ ] Soporte para diagramas de secuencia complejos.
-    - [ ] Creación de estructura.
+- [x] **12. `mermaid-diagram-pro`**
+    - [x] Análisis de similitud y búsqueda en fuente.
+    - [x] Soporte para diagramas de secuencia complejos.
+    - [x] Creación de estructura.
 - [ ] **13. `marketing-expert`**
     - [ ] Análisis de similitud y búsqueda en fuente.
     - [ ] Estrategias de CRO y analítica 2026.
