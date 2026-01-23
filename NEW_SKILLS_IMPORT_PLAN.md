@@ -89,10 +89,10 @@ Para cada skill, seguiré este flujo de trabajo para garantizar que no solo impo
     - [x] Análisis de similitud (mezclar con `conductor-pro`).
     - [x] Protocolos de comunicación inter-agente.
     - [x] Creación de estructura.
-- [ ] **10. `c4-architect`**
-    - [ ] Análisis de similitud y búsqueda en fuente.
-    - [ ] Generación automática de diagramas C4.
-    - [ ] Creación de estructura.
+- [x] **10. `c4-architect`**
+    - [x] Análisis de similitud y búsqueda en fuente.
+    - [x] Generación automática de diagramas C4.
+    - [x] Creación de estructura.
 - [ ] **11. `openapi-pro`**
     - [ ] Análisis de similitud y búsqueda en fuente.
     - [ ] Generación de clientes Type-safe (Zod/Fetch).
