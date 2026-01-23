@@ -77,10 +77,10 @@ Para cada skill, seguiré este flujo de trabajo para garantizar que no solo impo
     - [x] Análisis de similitud (mezclar con `ui-ux-pro`).
     - [x] Adaptación a Tailwind 4 y Radix 2026.
     - [x] Creación de estructura.
-- [ ] **7. `monorepo-master`**
-    - [ ] Análisis de similitud y búsqueda en fuente.
-    - [ ] Optimización para Turborepo + Bun.
-    - [ ] Creación de estructura.
+- [x] **7. `monorepo-master`**
+    - [x] Análisis de similitud y búsqueda en fuente.
+    - [x] Optimización para Turborepo + Bun.
+    - [x] Creación de estructura.
 - [ ] **8. `github-actions-pro`**
     - [ ] Análisis de similitud y búsqueda en fuente.
     - [ ] Seguridad OIDC y Hardened Runners.
