@@ -81,10 +81,10 @@ Para cada skill, seguiré este flujo de trabajo para garantizar que no solo impo
     - [x] Análisis de similitud y búsqueda en fuente.
     - [x] Optimización para Turborepo + Bun.
     - [x] Creación de estructura.
-- [ ] **8. `github-actions-pro`**
-    - [ ] Análisis de similitud y búsqueda en fuente.
-    - [ ] Seguridad OIDC y Hardened Runners.
-    - [ ] Creación de estructura.
+- [x] **8. `github-actions-pro`**
+    - [x] Análisis de similitud y búsqueda en fuente.
+    - [x] Seguridad OIDC y Hardened Runners.
+    - [x] Creación de estructura.
 - [ ] **9. `subagent-orchestrator`**
     - [ ] Análisis de similitud (mezclar con `conductor-pro`).
     - [ ] Protocolos de comunicación inter-agente.
