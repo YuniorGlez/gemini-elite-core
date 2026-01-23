@@ -65,10 +65,10 @@ Para cada skill, seguiré este flujo de trabajo para garantizar que no solo impo
     - [x] Análisis de similitud (¿mezclar con `react-expert`?).
     - [x] Optimización de caché y Server Actions integration.
     - [x] Creación de estructura.
-- [ ] **4. `nestjs-pro`**
-    - [ ] Análisis de similitud y búsqueda en fuente.
-    - [ ] Adaptación a microservicios con Bun.
-    - [ ] Creación de estructura.
+- [x] **4. `nestjs-pro`**
+    - [x] Análisis de similitud y búsqueda en fuente.
+    - [x] Adaptación a microservicios con Bun.
+    - [x] Creación de estructura.
 - [ ] **5. `stripe-expert`**
     - [ ] Análisis de similitud y búsqueda en fuente.
     - [ ] Implementación de flujos de pago 2026 (Tax, Billing).
