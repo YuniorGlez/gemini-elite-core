@@ -109,10 +109,10 @@ Para cada skill, seguiré este flujo de trabajo para garantizar que no solo impo
     - [x] Análisis de similitud (mezclar con `seo-pro`).
     - [x] Generación de contenido con IA y Schema.org.
     - [x] Creación de estructura.
-- [ ] **15. `e2e-testing-expert`**
-    - [ ] Análisis de similitud y búsqueda en fuente.
-    - [ ] Playwright con visual testing y tracing.
-    - [ ] Creación de estructura.
+- [x] **15. `e2e-testing-expert`**
+    - [x] Análisis de similitud y búsqueda en fuente.
+    - [x] Playwright con visual testing y tracing.
+    - [x] Creación de estructura.
 - [ ] **16. `security-audit-pro`**
     - [ ] Análisis de similitud (mezclar con `auditor-pro`).
     - [ ] Auditoría de RLS y dependencias.
