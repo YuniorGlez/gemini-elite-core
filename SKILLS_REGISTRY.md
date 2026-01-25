@@ -12,7 +12,7 @@ This table tracks the last update for each skill within the project to ensure te
 | **artifact-janitor** | January 22, 2026 - 16:55 | 1.1.0 | ✅ Refactored |
 | **auditor-pro** | January 22, 2026 - 19:35 | 1.1.0 | ✅ Refactored |
 | **auth-expert** | January 22, 2026 - 15:20 | 2.0.0 | ✅ Refactored |
-| **browser-use-expert** | January 22, 2026 - 16:35 | 1.2.0 | ✅ Refactored |
+| **browser-use-expert** | January 25, 2026 - 23:30 | 1.3.0 | ✅ CLI Mastery |
 | **c4-architect** | January 23, 2026 - 19:35 | 1.0.0 | ✅ Created |
 | **code-architect** | January 22, 2026 - 19:20 | 1.1.0 | ✅ Refactored |
 | **code-review-pro** | January 23, 2026 - 21:40 | 1.0.0 | ✅ Created |

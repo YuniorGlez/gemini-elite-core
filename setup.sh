@@ -291,52 +291,35 @@ if ! check_mcp "filesystem" || gemini mcp list 2>/dev/null | grep -q "modelconte
     fi
 fi
 
-# Skip llm-tldr (not used)
+# 4.5 Browser Use Installation (Optional but Recommended)
+if ! command -v browser-use &> /dev/null; then
+    echo -e "\n${MAGENTA}🌐 Web Automation: browser-use CLI${NC}"
+    echo -e "$MSG_PROMPT_BROWSER_USE"
+    read -r INSTALL_BROWSER_USE
+    if [[ "$INSTALL_BROWSER_USE" =~ $YES_REGEX ]]; then
+        ./scripts/install-browser-use.sh
+        
+        # Browser Use API KEY Configuration
+        if [ -z "$BROWSER_USE_API_KEY" ]; then
+            echo -e "\n${MAGENTA}🔑 Browser Use API Configuration${NC}"
+            echo -e "Get your \$10 free credits at: ${CYAN}https://cloud.browser-use.com/new-api-key${NC}"
+            echo -n "Enter your BROWSER_USE_API_KEY (or press Enter to skip): "
+            read -r BU_KEY
+            if [ -n "$BU_KEY" ]; then
+                export BROWSER_USE_API_KEY="$BU_KEY"
+                echo -n "$MSG_SAVE_PERM"
+                read -r SAVE_BU_KEY
+                if [[ "$SAVE_BU_KEY" =~ $YES_REGEX ]]; then
+                    SHELL_CONFIG="$HOME/.zshrc"
+                    [ ! -f "$SHELL_CONFIG" ] && SHELL_CONFIG="$HOME/.bashrc"
+                    echo "export BROWSER_USE_API_KEY='$BU_KEY'" >> "$SHELL_CONFIG"
+                    success "$MSG_SUCCESS_KEY_SAVED $SHELL_CONFIG"
+                fi
+            fi
+        fi
+    fi
+fi
 
-# Consensual installation of browser-use (Commented out - causing issues)
-# if ! check_mcp "browser-use"; then
-#     echo -e "\n${MAGENTA}🌐 Experimental: browser-use MCP${NC}"
-#     echo -e "$MSG_PROMPT_BROWSER_USE"
-#     read -r INSTALL_BROWSER_USE
-#     if [[ "$INSTALL_BROWSER_USE" =~ $YES_REGEX ]]; then
-#         if command -v python3 &> /dev/null; then
-#             info "Installing browser-use dependencies..."
-#             # Install uv if not present
-#             if ! command -v uv &> /dev/null; then
-#                 info "Installing uv..."
-#                 if [[ "$OSTYPE" == "darwin"* ]] && command -v brew &> /dev/null; then
-#                     brew install uv &> /dev/null || true
-#                 else
-#                     curl -LsSf https://astral.sh/uv/install.sh | sh &> /dev/null || true
-#                 fi
-#                 
-#                 # Expand PATH to find uv in common install locations
-#                 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.astral-uv/bin:/opt/homebrew/bin:$PATH"
-#                 
-#                 # Final fallback if still not found
-#                 if ! command -v uv &> /dev/null && command -v pip3 &> /dev/null; then
-#                     pip3 install uv --break-system-packages &> /dev/null || true
-#                 fi
-#             fi
-#             
-#             if command -v uv &> /dev/null; then
-#                 info "Installing browser-use dependencies via uv..."
-#                 # Use uv style for installation
-#                 uv pip install browser-use playwright --break-system-packages &> /dev/null || true
-#                 uv run playwright install chromium &> /dev/null || true
-#                 
-#                 # Register using uvx to handle environment automatically
-#                 # We use a flag to mark it for the bun merge script
-#                 export INSTALL_BROWSER_USE_MCP=true
-#                 success "browser-use dependencies installed."
-#             else
-#                 warn "uv installation failed. Skipping browser-use."
-#             fi
-#         else
-#             warn "Python 3 not found. Skipping browser-use."
-#         fi
-#     fi
-# fi
 success "$MSG_SUCCESS_MCP_READY"
 
 # 5. Final Sync of Settings & Hooks
