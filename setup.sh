@@ -20,9 +20,25 @@ success() { echo -e "${GREEN}success${NC} $1"; }
 warn() { echo -e "${YELLOW}warn${NC} $1"; }
 step() { echo -e "\n${CYAN}🚀 $1${NC}"; }
 
+# Auto-Update Logic
+if [[ "$*" == *"--update"* ]]; then
+    step "Updating Gemini Elite Core from repository..."
+    if [ -d .git ]; then
+        git pull --rebase origin main
+        success "Repository updated. Running setup..."
+    else
+        warn "Not a git repository. Skipping git pull."
+    fi
+fi
+
 # Language Selection
-clear
-echo -e "${MAGENTA}Select Language / Selecciona Idioma:${NC}"
+if [[ "$*" == *"--update"* ]]; then
+    # Auto-select English or Spanish based on existing config if possible, else English
+    SELECTED_LANG="EN" 
+    CONSERVATIVE_MODE="false"
+else
+    clear
+    echo -e "${MAGENTA}Select Language / Selecciona Idioma:${NC}"
 echo -e "1) English (Default)"
 echo -e "2) Español"
 echo -n "Selection / Selección [1]: "
@@ -330,6 +346,17 @@ SCRIPTS_DIR="$HOME/.gemini/scripts"
 mkdir -p "$HOOKS_DIR"
 mkdir -p "$SCRIPTS_DIR"
 cp hooks/*.js "$HOOKS_DIR/"
+# Dynamic path recording for update checks
+REPO_PATH=$(pwd)
+echo "$REPO_PATH" > "$HOME/.gemini/.elite_core_path"
+
+# Inject dynamic path into check-update.sh before copying
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    sed -i '' "s|PLACEHOLDER_REPO_DIR|$REPO_PATH|" "scripts/check-update.sh"
+else
+    sed -i "s|PLACEHOLDER_REPO_DIR|$REPO_PATH|" "scripts/check-update.sh"
+fi
+
 cp scripts/*.sh "$SCRIPTS_DIR/" 2>/dev/null || true
 chmod +x "$SCRIPTS_DIR"/*.sh 2>/dev/null || true
 

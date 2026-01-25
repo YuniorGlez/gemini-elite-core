@@ -24,10 +24,31 @@ async function main() {
     const { spawnSync } = await import('node:child_process');
     const bunCheck = spawnSync('bun', ['--version'], { encoding: 'utf8' });
     
-    if (bunCheck.status !== 0) {
-      logToUser(`${yellow}⚠️  Warning: Bun not detected. Standard Node.js used (lower performance).${reset}`);
-    } else {
-      logToUser(`${cyan}✓ Bun ${bunCheck.stdout.trim()} detected (Elite Performance Mode)${reset}`);
+    // 2.5 Update Check (Elite & Cross-platform)
+    const { execSync } = await import('node:child_process');
+    const { join } = await import('node:path');
+    const { existsSync, readFileSync } = await import('node:fs');
+    const { homedir } = await import('node:os');
+
+    const repoPathFile = join(homedir(), '.gemini', '.elite_core_path');
+    
+    if (existsSync(repoPathFile)) {
+      const repoDir = readFileSync(repoPathFile, 'utf8').trim();
+      if (existsSync(join(repoDir, '.git'))) {
+        // Run fetch in background to check for updates
+        try {
+          execSync('git fetch --quiet origin main', { cwd: repoDir, timeout: 5000 });
+          const local = execSync('git rev-parse @', { cwd: repoDir, encoding: 'utf8' }).trim();
+          const remote = execSync('git rev-parse @{u}', { cwd: repoDir, encoding: 'utf8' }).trim();
+
+          if (local !== remote) {
+            logToUser(`\n${yellow}🚀 Gemini Elite Core update available!${reset}`);
+            logToUser(`Run: ${cyan}cd "${repoDir}" && ${process.platform === 'win32' ? '.\\setup.cmd' : './setup.sh'} --update${reset} to apply.\n`);
+          }
+        } catch (e) {
+          // Git fail or no network, ignore silently
+        }
+      }
     }
   } catch (e) {
     // Silently fail if process check fails
