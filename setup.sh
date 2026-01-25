@@ -93,8 +93,8 @@ if [[ "$SELECTED_LANG" == "ES" ]]; then
     MSG_CONSERVATIVE_PROMPT="¿Quieres ser más conservador o menos conservador?"
     MSG_CONSERVATIVE_OPT1="1) Menos conservador (Más potente) [Predeterminado]"
     MSG_CONSERVATIVE_OPT2="2) Más conservador"
-    # MSG_STEP_CONFIG_BROWSER_USE="Configurando browser-use (Automatización Web)..."
-    # MSG_PROMPT_BROWSER_USE="browser-use permite a Gemini navegar por internet, extraer datos y completar tareas en sitios web. ¿Deseas instalarlo? (Requiere Python 3 y uv) [S/n]: "
+    MSG_STEP_CONFIG_BROWSER_USE="Configurando browser-use (Automatización Web)..."
+    MSG_PROMPT_BROWSER_USE="browser-use permite a Gemini navegar por internet, extraer datos y completar tareas en sitios web. ¿Deseas instalarlo? (Requiere Python 3 y uv) [S/n]: "
     YES_REGEX="^[Ss]?$"
 else
     MSG_TITLE="Gemini Elite Core v5.6"
@@ -137,8 +137,8 @@ else
     MSG_CONSERVATIVE_PROMPT="Do you want to be more conservative or less conservative?"
     MSG_CONSERVATIVE_OPT1="1) Less conservative (Most powerful) [Default]"
     MSG_CONSERVATIVE_OPT2="2) More conservative"
-    # MSG_STEP_CONFIG_BROWSER_USE="Configuring browser-use (Web Automation)..."
-    # MSG_PROMPT_BROWSER_USE="browser-use allows Gemini to browse the internet, extract data, and complete tasks on websites. Do you want to install it? (Requires Python 3 and uv) [Y/n]: "
+    MSG_STEP_CONFIG_BROWSER_USE="Configuring browser-use (Web Automation)..."
+    MSG_PROMPT_BROWSER_USE="browser-use allows Gemini to browse the internet, extract data, and complete tasks on websites. Do you want to install it? (Requires Python 3 and uv) [Y/n]: "
     YES_REGEX="^[Yy]?$"
 fi
 

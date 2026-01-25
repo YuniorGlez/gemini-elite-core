@@ -65,6 +65,7 @@ if "%SELECTED_LANG%"=="ES" (
     set "MSG_SUCCESS_GEMINI_MD=GEMINI.md global actualizado."
     set "MSG_FINISH=Aprovisionamiento de Gemini Elite Core completado!"
     set "MSG_CONSERVATIVE_PROMPT=¿Quieres ser mas conservador?"
+    set "MSG_PROMPT_BROWSER_USE=browser-use permite a Gemini navegar por internet, extraer datos y completar tareas en sitios web. ¿Deseas instalarlo? (Requiere Python 3 y uv) [S/n]: "
     set "MSG_ERR_SPACE=ERROR: Espacio insuficiente o error de enlace. Reintentando..."
     set "YES_VAL=s"
 ) else (
@@ -88,6 +89,7 @@ if "%SELECTED_LANG%"=="ES" (
     set "MSG_STEP_ADOPT_PROTOCOLS=Agentic Protocols Adoption"
     set "MSG_PROTOCOLS_DESC=Elite Core Protocols enforce specific workflows:"
     set "MSG_PROMPT_ADOPT=Do you want to adopt these Elite Core protocols in your global GEMINI.md? [Y/n]: "
+    set "MSG_PROMPT_BROWSER_USE=browser-use allows Gemini to browse the internet, extract data, and complete tasks on websites. Do you want to install it? (Requires Python 3 and uv) [Y/n]: "
     set "MSG_SUCCESS_GEMINI_MD=Global GEMINI.md updated."
     set "MSG_FINISH=Gemini Elite Core Provisioning Complete!"
     set "MSG_CONSERVATIVE_PROMPT=Do you want to be more conservative?"
@@ -192,6 +194,18 @@ if %ERRORLEVEL% NEQ 0 (
     )
 )
 echo %GREEN%success%NC% %MSG_SUCCESS_MCP_READY%
+
+:: 4.5 Browser Use Installation (Optional)
+where browser-use >nul 2>nul
+if %ERRORLEVEL% NEQ 0 (
+    echo.
+    echo %MAGENTA%🌐 Web Automation: browser-use CLI%NC%
+    echo %MSG_PROMPT_BROWSER_USE%
+    set /p INSTALL_BROWSER_USE=""
+    if /I "!INSTALL_BROWSER_USE!"=="%YES_VAL%" (
+        powershell -ExecutionPolicy ByPass -File scripts\install-browser-use.ps1
+    )
+)
 
 :: 5. Sync Settings (Full Elite Core Configuration)
 echo.

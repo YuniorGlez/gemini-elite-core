@@ -3,7 +3,7 @@
 # Check if Gemini Elite Core has updates
 # This script is provisioned by setup.sh with the correct REPO_DIR
 
-REPO_DIR="PLACEHOLDER_REPO_DIR"
+REPO_DIR="/Users/yuniorglez/_projects/squaads/squaads_projects/squaads-ai-core"
 
 if [ ! -d "$REPO_DIR/.git" ]; then
     exit 0
