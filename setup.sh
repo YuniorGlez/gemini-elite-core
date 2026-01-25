@@ -39,15 +39,16 @@ if [[ "$*" == *"--update"* ]]; then
 else
     clear
     echo -e "${MAGENTA}Select Language / Selecciona Idioma:${NC}"
-echo -e "1) English (Default)"
-echo -e "2) Español"
-echo -n "Selection / Selección [1]: "
-read -r LANG_CHOICE
+    echo -e "1) English (Default)"
+    echo -e "2) Español"
+    echo -n "Selection / Selección [1]: "
+    read -r LANG_CHOICE
 
-if [[ "$LANG_CHOICE" == "2" ]]; then
-    SELECTED_LANG="ES"
-else
-    SELECTED_LANG="EN"
+    if [[ "$LANG_CHOICE" == "2" ]]; then
+        SELECTED_LANG="ES"
+    else
+        SELECTED_LANG="EN"
+    fi
 fi
 
 # Translations
