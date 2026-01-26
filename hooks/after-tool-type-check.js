@@ -49,7 +49,10 @@ async function main() {
   }
 
   if (systemMessage) {
-    console.log(JSON.stringify({ systemMessage }));
+    // In v0.27.0, exit code 2 triggers a System Block/Retry
+    // This forces the agent to fix the type errors before continuing
+    process.stderr.write(`<hook_context>\n${systemMessage}\n</hook_context>`);
+    process.exit(2);
   }
 }
 

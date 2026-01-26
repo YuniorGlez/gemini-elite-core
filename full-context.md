@@ -1,7 +1,7 @@
 # 🤖 Gemini Elite Core: Full Context & Project DNA
 
 ## 1. Project Overview
-**Gemini Elite Core** is not a standard software application; it is a high-performance **Autonomous Agent Orchestration Suite**. It serves as the "Operating System" and "Tactical Brain" for the Gemini CLI (v0.26.0+). Its primary purpose is to transform a base LLM into a specialized Senior Software Engineer capable of navigating the complex tech landscape of 2026.
+**Gemini Elite Core** is not a standard software application; it is a high-performance **Autonomous Agent Orchestration Suite**. It serves as the "Operating System" and "Tactical Brain" for the Gemini CLI (v0.27.0+). Its primary purpose is to transform a base LLM into a specialized Senior Software Engineer capable of navigating the complex tech landscape of 2026.
 
 ## 2. The "Why" (The Problem)
 Standard AI agents suffer from:
@@ -25,9 +25,10 @@ The core knowledge base. Each skill (e.g., `react-expert`, `supabase-expert`) is
 ### B. Event Hooks (`/hooks`) & Scripts (`/scripts`)
 The "Nervous System" and "Action Layer" of the CLI.
 - `session-start-welcome.js`: Bootstraps the agent's persona.
-- `after-tool-type-check.js`: Automatically runs `bun x tsc --noEmit` AND enforces the **500-line Modularity Guardrail**.
+- `after-tool-type-check.js`: Automatically runs `bun x tsc --noEmit` AND enforces the **500-line Modularity Guardrail** using the new **Exit Code 2 (System Block)** standard for v0.27.
 - `after-model-commit-check.js`: Validates Conventional Commits.
 - `scripts/committer.sh`: The mandatory tool for **Atomic & Scoped Commits** (No `git add .`).
+- **Interactive Protocols**: Integration of `AskUser` tool for architectural consensus and `/rewind` for history management.
 
 ### C. The Conductor (`conductor-pro`) & The Agent Soul
 The meta-skill and the core identity.

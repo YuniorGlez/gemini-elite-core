@@ -85,10 +85,10 @@ if [[ "$SELECTED_LANG" == "ES" ]]; then
     MSG_SUCCESS_GEMINI_MD="GEMINI.md global actualizado con protocolos Elite Core."
     MSG_INFO_SKIP_GEMINI="Omitiendo actualización de GEMINI.md. Aún puedes usar las habilidades manualmente."
     MSG_FINISH="¡Aprovisionamiento de Gemini Elite Core completado!"
-    MSG_STATUS_CLI="CLI: Nightly (v0.27.0-nightly.20260122)"
-    MSG_STATUS_AGENTS="Agentes: Generalist + Especialistas (Activos)"
-    MSG_STATUS_PLANNING="Planificación: Interactive Mode (v0.27)"
-    MSG_STATUS_SKILLS="Habilidades: Desplegadas (Code Reviewer +)"
+    MSG_STATUS_CLI="CLI: Nightly (v0.27.0-nightly.20260126)"
+    MSG_STATUS_AGENTS="Agentes: Generalist + Especialistas (Descubrimiento Dinámico)"
+    MSG_STATUS_PLANNING="Planificación: Interactive & Persistent (v0.27)"
+    MSG_STATUS_SKILLS="Habilidades: Desplegadas (Docs Writer +)"
     MSG_STATUS_HOOKS="Hooks: System Active"
     MSG_CONSERVATIVE_PROMPT="¿Quieres ser más conservador o menos conservador?"
     MSG_CONSERVATIVE_OPT1="1) Menos conservador (Más potente) [Predeterminado]"
@@ -129,10 +129,10 @@ else
     MSG_SUCCESS_GEMINI_MD="Global GEMINI.md updated with Elite Core protocols."
     MSG_INFO_SKIP_GEMINI="Skipping GEMINI.md update. You can still use the skills manually."
     MSG_FINISH="Gemini Elite Core Provisioning Complete!"
-    MSG_STATUS_CLI="CLI: Nightly (v0.27.0-nightly.20260122)"
-    MSG_STATUS_AGENTS="Agents: Generalist + Specialists (Active)"
-    MSG_STATUS_PLANNING="Planning: Interactive Mode (v0.27)"
-    MSG_STATUS_SKILLS="Skills: Deployed (Code Reviewer +)"
+    MSG_STATUS_CLI="CLI: Nightly (v0.27.0-nightly.20260126)"
+    MSG_STATUS_AGENTS="Agents: Generalist + Specialists (Dynamic Discovery)"
+    MSG_STATUS_PLANNING="Planning: Interactive & Persistent (v0.27)"
+    MSG_STATUS_SKILLS="Skills: Deployed (Docs Writer +)"
     MSG_STATUS_HOOKS="Hooks: System Active"
     MSG_CONSERVATIVE_PROMPT="Do you want to be more conservative or less conservative?"
     MSG_CONSERVATIVE_OPT1="1) Less conservative (Most powerful) [Default]"
@@ -353,6 +353,9 @@ OPTIMIZED_SETTINGS='{
     "enabled": true,
     "codeReviewer": {
       "enabled": true
+    },
+    "docsWriter": {
+      "enabled": true
     }
   },
   "experimental": { 
@@ -366,7 +369,8 @@ OPTIMIZED_SETTINGS='{
     "planningMode": "auto", 
     "planVisualization": true, 
     "requirePlanApproval": false,
-    "eventDrivenScheduler": true
+    "eventDrivenScheduler": true,
+    "agentRegistry": { "trackAllDiscovered": true }
   },
   "plan": {
     "approvalMode": "interactive"
