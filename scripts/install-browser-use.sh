@@ -39,7 +39,7 @@ if command -v uv &> /dev/null; then
     uv tool install browser-use --python 3.12 --force
     
     info "Installing Playwright browsers..."
-    uv run --python 3.12 playwright install chromium
+    uv run --python 3.12 --with playwright playwright install chromium
 else
     # Fallback si uv falla (aunque uv python install debería haber funcionado)
     warn "uv exists but had issues. Trying system fallback (unreliable for <3.11)..."
