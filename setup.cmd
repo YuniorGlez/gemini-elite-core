@@ -1,7 +1,7 @@
 @echo off
 SETLOCAL EnableDelayedExpansion
 
-:: Gemini Elite Core Setup Script - v6.5 "Cross-Platform Integrity"
+:: Gemini Elite Core Setup Script - v6.5 "Skill Mastery Edition"
 :: Windows CMD Version - Fix: Update logic + Elite Soul Protocol
 
 :: Visual constants (ANSI Escape Sequences)
@@ -42,8 +42,8 @@ if "%LANG_CHOICE%"=="2" (
 
 :: Translations
 if "%SELECTED_LANG%"=="ES" (
-    set "MSG_TITLE=Gemini Elite Core v6.4"
-    set "MSG_SUBTITLE=La suite de aprovisionamiento inteligente (Cross-Platform Update)"
+    set "MSG_TITLE=Gemini Elite Core v6.5"
+    set "MSG_SUBTITLE=La suite de aprovisionamiento inteligente (Skill Mastery Update)"
     set "MSG_STEP_CHECK_CLI=Comprobando Gemini CLI..."
     set "MSG_WARN_CLI_NOT_FOUND=Gemini CLI no detectado. Instalando version @nightly..."
     set "MSG_SUCCESS_CLI_INSTALLED=Gemini CLI instalado."
@@ -63,7 +63,7 @@ if "%SELECTED_LANG%"=="ES" (
     set "MSG_PROTOCOLS_DESC=Los protocolos Elite Core imponen flujos de trabajo especificos:"
     set "MSG_PROMPT_ADOPT=¿Quieres adoptar estos protocolos Elite Core en tu GEMINI.md global? [S/n]: "
     set "MSG_SUCCESS_GEMINI_MD=GEMINI.md global actualizado."
-    set "MSG_STATUS_CLI=CLI: Nightly (v0.27.0-nightly.20260127)"
+    set "MSG_STATUS_CLI=CLI: Nightly (v0.27.0-nightly.20260128)"
     set "MSG_STATUS_AGENTS=Agentes: Generalist + Especialistas (Event-Driven Scheduler)"
     set "MSG_FINISH=Aprovisionamiento de Gemini Elite Core completado!"
     set "MSG_CONSERVATIVE_PROMPT=¿Quieres ser mas conservador?"
@@ -71,8 +71,8 @@ if "%SELECTED_LANG%"=="ES" (
     set "MSG_ERR_SPACE=ERROR: Espacio insuficiente o error de enlace. Reintentando..."
     set "YES_VAL=s"
 ) else (
-    set "MSG_TITLE=Gemini Elite Core v6.4"
-    set "MSG_SUBTITLE=The Intelligent Provisioning Suite (Cross-Platform Update)"
+    set "MSG_TITLE=Gemini Elite Core v6.5"
+    set "MSG_SUBTITLE=The Intelligent Provisioning Suite (Skill Mastery Update)"
     set "MSG_STEP_CHECK_CLI=Checking Gemini CLI..."
     set "MSG_WARN_CLI_NOT_FOUND=Gemini CLI not detected. Installing @nightly version..."
     set "MSG_SUCCESS_CLI_INSTALLED=Gemini CLI installed."
@@ -221,6 +221,7 @@ echo const hooksDir = process.argv[3]; >> "%TEMP_SCRIPT%"
 echo const optimized = { >> "%TEMP_SCRIPT%"
 echo   enableAgentSkills: true, >> "%TEMP_SCRIPT%"
 echo   core: { disableLLMCorrection: true, optimizeShellOutput: true }, >> "%TEMP_SCRIPT%"
+echo   skills: { enabled: true }, >> "%TEMP_SCRIPT%"
 echo   experimental: { >> "%TEMP_SCRIPT%"
 echo     introspectionAgentSettings: { enabled: true }, >> "%TEMP_SCRIPT%"
 echo     skillCreator: true, >> "%TEMP_SCRIPT%"
@@ -258,6 +259,11 @@ echo     experimental: { ...(current.experimental || {}), ...optimized.experimen
 echo     agents: { ...(current.agents || {}), ...optimized.agents }, >> "%TEMP_SCRIPT%"
 echo     hooks: hooks >> "%TEMP_SCRIPT%"
 echo   }; >> "%TEMP_SCRIPT%"
+echo   if (merged.experimental ^&^& merged.experimental.skills !== undefined) { >> "%TEMP_SCRIPT%"
+echo       if (!merged.skills) merged.skills = {}; >> "%TEMP_SCRIPT%"
+echo       merged.skills.enabled = merged.experimental.skills; >> "%TEMP_SCRIPT%"
+echo       delete merged.experimental.skills; >> "%TEMP_SCRIPT%"
+echo   } >> "%TEMP_SCRIPT%"
 echo   fs.writeFileSync(settingsPath, JSON.stringify(merged, null, 2)); >> "%TEMP_SCRIPT%"
 echo   process.exit(0); >> "%TEMP_SCRIPT%"
 echo } catch (e) { >> "%TEMP_SCRIPT%"
@@ -304,7 +310,7 @@ if /I "%ADOPT_PROTOCOLS%"=="%YES_VAL%" (
     :: Write line by line using absolute system paths
     (
     echo ^<ELITE_CORE_CONTEXT^>
-    echo ^<!-- VERSION: 2.5.0 --^>
+    echo ^<!-- VERSION: 2.5.1 --^>
     echo # 🚀 Gemini Elite Core - Quick Start Guide ^(Generalist Edition^)
     echo.
     echo ## 🪐 The Agent Soul: ADN ^& Work Ethics ^(MANDATORY^)
@@ -316,7 +322,7 @@ if /I "%ADOPT_PROTOCOLS%"=="%YES_VAL%" (
     echo - **Zero Tolerance for `any`**: Typing must be strict and descriptive. If a type doesn't exist, create it. Do not "vibe-code" without types.
     echo - **Atomicity and Security**: NEVER use `git add .`. It is a protocol violation. Use EXCLUSIVELY `~/.gemini/scripts/committer.sh` for surgical and safe staging.
     echo - **Technical Conciseness**: Speak with code and facts. Avoid unnecessary preambles ^("Okay, I will..."^). Be direct and professional.
-    echo - **Performance v0.27 ^(Nightly 20260127^)**: Always prioritize the new capabilities: **Event-Driven Scheduler** ^(Low latency^), **Persistent Plan Storage** ^(Session recovery^), and **Shell Output Optimization**.
+    echo - **Performance v0.27 ^(Nightly 20260128^)**: Always prioritize the new capabilities: **Event-Driven Scheduler** ^(Low latency^), **Persistent Plan Storage** ^(Session recovery^), and **Shell Output Optimization**.
     echo.
     echo ### 3. Action Protocols
     echo - **MANDATORY: Plan-First Execution**: YOU MUST ALWAYS START EVERY TASK BY INITIALIZING PLAN MODE ^(`Shift+Tab` or `/plan`^). Do not perform any file modifications or complex tool calls until a plan has been explicitly shared and approved by the user. This is a non-negotiable step for all engineering tasks. Note: Plans are now persistent in `~/.gemini/plans/`.
@@ -380,7 +386,7 @@ if /I "%ADOPT_PROTOCOLS%"=="%YES_VAL%" (
     echo     - **Usage**: Use ONLY for reviewing the application I am currently programming ^(localhost^) or when the user explicitly requests a visual check with Chrome.
     echo.
     echo 3.  **Anti-Obsolescence Protocol ^(MANDATORY^)**:
-    echo     - **Step 1 ^(Local Skills^)**: I am aware that my training data is from 2024, while the user works with 2026 tech. I MUST always run `activate_skill` for the relevant technology FIRST.
+    echo     - **Step 1 ^(Local Skills^)**: I am aware that my training data is from 2024, while the user works with 2026 tech. I MUST always run ^(`activate_skill`^) for the relevant technology FIRST.
     echo     - **Step 2 ^(Internet Bridge^)**: If the local skill does not provide a clear solution for a modern library ^(e.g., React 19, Next 16^), I am OBLIGATED to search the internet via `browser-use` to verify the latest API changes and fix errors based on real-time 2026 documentation.
     echo ^</ELITE_CORE_CONTEXT^>
     ) > "%USER_GEMINI%"

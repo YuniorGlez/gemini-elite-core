@@ -85,7 +85,7 @@ if [[ "$SELECTED_LANG" == "ES" ]]; then
     MSG_SUCCESS_GEMINI_MD="GEMINI.md global actualizado con protocolos Elite Core."
     MSG_INFO_SKIP_GEMINI="Omitiendo actualización de GEMINI.md. Aún puedes usar las habilidades manualmente."
     MSG_FINISH="¡Aprovisionamiento de Gemini Elite Core completado!"
-    MSG_STATUS_CLI="CLI: Nightly (v0.27.0-nightly.20260127)"
+    MSG_STATUS_CLI="CLI: Nightly (v0.27.0-nightly.20260128)"
     MSG_STATUS_AGENTS="Agentes: Generalist + Especialistas (Event-Driven Scheduler)"
     MSG_STATUS_PLANNING="Planificación: Persistent & Interactive (v0.27)"
     MSG_STATUS_SKILLS="Habilidades: Desplegadas (Docs Writer +)"
@@ -129,7 +129,7 @@ else
     MSG_SUCCESS_GEMINI_MD="Global GEMINI.md updated with Elite Core protocols."
     MSG_INFO_SKIP_GEMINI="Skipping GEMINI.md update. You can still use the skills manually."
     MSG_FINISH="Gemini Elite Core Provisioning Complete!"
-    MSG_STATUS_CLI="CLI: Nightly (v0.27.0-nightly.20260127)"
+    MSG_STATUS_CLI="CLI: Nightly (v0.27.0-nightly.20260128)"
     MSG_STATUS_AGENTS="Agents: Generalist + Specialists (Event-Driven Scheduler)"
     MSG_STATUS_PLANNING="Planning: Persistent & Interactive (v0.27)"
     MSG_STATUS_SKILLS="Skills: Deployed (Docs Writer +)"
@@ -364,7 +364,6 @@ OPTIMIZED_SETTINGS='{
     "skillCreator": true, 
     "hooks": true,
     "hooksSystem": true,
-    "skills": true, 
     "planning": true, 
     "plan": true,
     "planningMode": "auto", 
@@ -446,9 +445,25 @@ if command -v bun &> /dev/null; then
             security: security,
             hooks: hooks
         };
+
+        // Migration: Move experimental.skills to skills.enabled if present
+        if (merged.experimental && merged.experimental.skills !== undefined) {
+            if (!merged.skills) merged.skills = {};
+            merged.skills.enabled = merged.experimental.skills;
+            delete merged.experimental.skills;
+        }
+
         fs.writeFileSync(settingsPath, JSON.stringify(merged, null, 2));
     "
     success "$MSG_SUCCESS_SETTINGS_MERGED"
+
+    # Strict Policy Permissions (v0.27 standard)
+    POLICY_DIR="$HOME/.gemini/policies"
+    if [ -d "$POLICY_DIR" ]; then
+        chmod 700 "$POLICY_DIR"
+        find "$POLICY_DIR" -type f -name "*.json" -exec chmod 600 {} +
+        info "Strict policy permissions enforced."
+    fi
 fi
 
 # 6. Global GEMINI.md Update with Consent
@@ -472,11 +487,11 @@ fi
 
 if [[ "$ADOPT_PROTOCOLS" =~ $YES_REGEX ]]; then
     USER_GEMINI="$HOME/.gemini/GEMINI.md"
-    CURRENT_VERSION="2.5.0"
+    CURRENT_VERSION="2.5.1"
 
     read -r -d '' NEW_BLOCK << 'EOF' || true
 <ELITE_CORE_CONTEXT>
-<!-- VERSION: 2.5.0 -->
+<!-- VERSION: 2.5.1 -->
 # 🚀 Gemini Elite Core - Quick Start Guide (Generalist Edition)
 
 ## 🪐 The Agent Soul: ADN & Work Ethics (MANDATORY)
@@ -488,7 +503,7 @@ You are an **Elite Senior Software Engineer (2026)**. You are not a simple assis
 - **Zero Tolerance for `any`**: Typing must be strict and descriptive. If a type doesn't exist, create it. Do not "vibe-code" without types.
 - **Atomicity and Security**: NEVER use `git add .`. It is a protocol violation. Use EXCLUSIVELY `~/.gemini/scripts/committer.sh` for surgical and safe staging.
 - **Technical Conciseness**: Speak with code and facts. Avoid unnecessary preambles ("Okay, I will..."). Be direct and professional.
-- **Performance v0.27 (Nightly 20260127)**: Always prioritize the new capabilities: **Event-Driven Scheduler** (Low latency), **Persistent Plan Storage** (Session recovery), and **Shell Output Optimization**.
+- **Performance v0.27 (Nightly 20260128)**: Always prioritize the new capabilities: **Event-Driven Scheduler** (Low latency), **Persistent Plan Storage** (Session recovery), and **Shell Output Optimization**.
 
 ### 3. Action Protocols
 - **MANDATORY: Plan-First Execution**: YOU MUST ALWAYS START EVERY TASK BY INITIALIZING PLAN MODE (`Shift+Tab` or `/plan`). Do not perform any file modifications or complex tool calls until a plan has been explicitly shared and approved by the user. This is a non-negotiable step for all engineering tasks. Note: Plans are stored in `~/.gemini/plans/`.

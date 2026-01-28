@@ -21,6 +21,7 @@ Standard AI agents suffer from:
 The core knowledge base. Each skill (e.g., `react-expert`, `supabase-expert`) is a "Context Injection" module.
 - **Standard:** 400+ lines of depth, example-first, and includes a "Do Not List".
 - **Recency:** Explicitly optimized for January 2026 standards.
+- **V0.27 Stability:** Skills are now promoted to stable (`skills.enabled`).
 
 ### B. Event Hooks (`/hooks`) & Scripts (`/scripts`)
 The "Nervous System" and "Action Layer" of the CLI.
@@ -30,12 +31,13 @@ The "Nervous System" and "Action Layer" of the CLI.
 - `scripts/committer.sh`: The mandatory tool for **Atomic & Scoped Commits** (No `git add .`).
 - **Interactive Protocols**: Integration of `AskUser` tool for architectural consensus and `/rewind` for history management.
 
-### C. The Conductor & Plan Engine (v0.27.0-nightly.20260127)
+### C. The Conductor & Plan Engine (v0.27.0-nightly.20260128)
 The intelligence and strategy layer.
 - **Persistent Plan Storage**: Plans are now saved as JSON in `~/.gemini/plans/`, enabling auditability and session recovery.
 - **Event-Driven Subagents**: Subagents have been migrated to a high-performance event-driven scheduler, reducing latency by up to 5x.
 - **First-Run Protocol**: New `/agents init` command for project-level subagent onboarding.
-- **Context Refresh**: Automatic system prompt refresh when toggling Approval Mode (`Shift+Tab`).
+- **Extension Settings**: Dynamic loading of `hooks.json`, `agents.json`, and `skills.json` from extensions.
+- **Path Validation**: Centralized security validation for file access, including temporary directory permissions.
 
 ### D. The Landing Page (`/website`)
 A high-performance React 19 + Tailwind 4 site that serves as the project's public face and installation portal.
@@ -45,6 +47,7 @@ A high-performance React 19 + Tailwind 4 site that serves as the project's publi
 - **Frontend:** React 19.2 (using `use()`, `cacheSignal`, and the React Compiler).
 - **Styling:** Tailwind CSS 4.0 (Oxide engine, CSS-first config).
 - **Typing:** Strict TypeScript (no `any`, Zod-validated tool inputs).
+- **Security**: Strict policy directory permissions (700 for dirs, 600 for files).
 - **Protocol:** Conventional Commits only.
 
 ## 6. Guidance for Future Agents
