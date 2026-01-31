@@ -400,8 +400,14 @@ OPTIMIZED_SETTINGS='{
 }'
 
 if command -v bun &> /dev/null; then
+    RUNNER="bun"
+elif command -v node &> /dev/null; then
+    RUNNER="node"
+fi
+
+if [ -n "$RUNNER" ]; then
     export OPTIMIZED_SETTINGS_JSON="$OPTIMIZED_SETTINGS"
-    bun -e "
+    $RUNNER -e "
         const fs = require('fs');
         const path = require('path');
         const settingsPath = '$SETTINGS_FILE';
@@ -414,7 +420,7 @@ if command -v bun &> /dev/null; then
         }
 
         const hooks = {
-            'SessionStart': [{ 'matcher': '*', 'hooks': [{ 'name': 'welcome', 'type': 'command', 'command': 'bun ' + path.join(hooksDir, 'session-start-welcome.js') }] }]
+            'SessionStart': [{ 'matcher': '*', 'hooks': [{ 'name': 'welcome', 'type': 'command', 'command': '$RUNNER ' + path.join(hooksDir, 'session-start-welcome.js') }] }]
         };
 
         const mcpServers = current.mcpServers || {};
@@ -464,6 +470,8 @@ if command -v bun &> /dev/null; then
         find "$POLICY_DIR" -type f -name "*.json" -exec chmod 600 {} +
         info "Strict policy permissions enforced."
     fi
+else
+    warn "Neither bun nor node found. Skipping settings synchronization."
 fi
 
 # 6. Global GEMINI.md Update with Consent
