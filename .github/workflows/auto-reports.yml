@@ -25,6 +25,7 @@ jobs:
         with:
           # Token de GitHub para operaciones de API (automático)
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          gemini-api-key: ${{ secrets.GEMINI_API_KEY }}
           
           # Configuración de Marca y Comportamiento (JSON)
           aura-config: >-
