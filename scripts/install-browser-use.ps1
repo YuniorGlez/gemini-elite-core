@@ -32,7 +32,7 @@ if (Get-Command uv -ErrorAction SilentlyContinue) {
     & uv tool install browser-use --python 3.12 --force
     
     Write-Info "Installing Playwright browsers..."
-    & uv run --python 3.12 playwright install chromium
+    & uv run --python 3.12 --with playwright playwright install chromium
 } else {
     Write-Info "Installing browser-use via pip fallback..."
     & pip install browser-use playwright
