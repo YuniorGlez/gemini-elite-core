@@ -1,0 +1,41 @@
+# .github/workflows/auto-reports.yml
+name: Auto-Reports Business Value
+
+on:
+  pull_request:
+    # Se ejecuta al abrir, actualizar o cerrar un PR
+    types: [opened, synchronize, closed]
+
+jobs:
+  generate-business-reports:
+    runs-on: ubuntu-latest
+    # PERMISOS CRÍTICOS: Necesarios para leer el PR y escribir los informes en el repo
+    permissions:
+      contents: write
+      pull-requests: read
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: SQUAADS Auto-Reports
+        uses: YuniorGlez/auto-reports@main
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        with:
+          # Token de GitHub para operaciones de API (automático)
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          
+          # Configuración de Marca y Comportamiento (JSON)
+          aura-config: >-
+            {
+              "branding": {
+                "projectName": "Mi Cliente / Proyecto",
+                "primaryColor": "#2563eb",
+                "secondaryColor": "#1e40af"
+              },
+              "behavior": {
+                "language": "es",
+                "reports": ["client", "pm", "dev", "user"]
+              }
+            }
