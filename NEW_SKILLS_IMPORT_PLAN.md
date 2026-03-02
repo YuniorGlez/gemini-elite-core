@@ -1,138 +1,41 @@
-# Plan de Importación de Nuevas Skills (Skills.sh -> Gemini Elite Core)
+# Plan de Actualización: Elite Core v0.33 (Thinking Edition)
 
-Este documento detalla la estrategia para integrar 20 nuevas capacidades provenientes del ecosistema `skills.sh`, adaptándolas a los estándares de **Squaads AI Core** (Next.js 16, React 19, Bun, Tailwind 4).
+Este plan detalla las modificaciones necesarias para elevar el setup de Gemini Elite Core a los estándares de la versión v0.33.0-nightly, optimizando el uso de Gemini 3 y mejorando la eficiencia operativa.
 
-## 🧠 Aclaración: "Strict Typing" en Skills
-Cuando hablo de **Strict Typing** aplicado a una Skill, me refiero a que la Skill no solo contiene texto descriptivo, sino que define **herramientas (tools)** con validación de tipos rigurosa.
+## 1. Actualización de Core Settings (`settings.json`)
 
-1.  **Validación de Herramientas (Zod/Pydantic):** Si una skill (como `stripe-expert`) incluye un script en `/scripts` para validar una API Key o crear un producto, los argumentos que el LLM pasa a ese script deben estar definidos mediante un esquema (Zod en TypeScript o Pydantic en Python). Esto evita que el modelo envíe parámetros inventados o con formatos incorrectos.
-2.  **Output Estructurado:** Garantizar que cuando la skill genera código, este siga una interfaz de tipos estricta (`interface`, `type`, `z.infer`) para que el resto del sistema pueda consumirlo sin errores de runtime.
-3.  **Contratos de Datos:** Definir "contratos" entre lo que el usuario pide y lo que el agente ejecuta, eliminando la ambigüedad.
+### A. Soporte para Thinking (Gemini 3)
+Configuraremos un preset de modelo que aproveche las capacidades de razonamiento.
+- **`modelConfigs`**: Definir el alias `thinking-pro` con `gemini-3.1-pro-preview`.
+- **`generateContentConfig`**: Activar `includeThoughts: true` y establecer un `thinkingBudget: 16000` por defecto.
+- **`ui.inlineThinkingMode`**: Establecer en `full` para visibilidad total del proceso de razonamiento.
 
----
+### B. Eficiencia de Contexto y Tokens
+- **`experimental.toolOutputMasking`**: Activar para evitar saturar el contexto con logs de herramientas innecesarios.
+- **`tools.truncateToolOutputThreshold`**: Ajustar a `30000` para un equilibrio entre información y ahorro.
+- **`experimental.jitContext`**: Activar para optimizar la carga de archivos en repositorios grandes.
 
-## 📋 Listado de 20 Skills a Importar
+### C. Flujo de Trabajo y Seguridad
+- **`general.defaultApprovalMode`**: Cambiar a `plan` para forzar la revisión de estrategias antes de la ejecución.
+- **`general.checkpointing.enabled`**: Activar para permitir recuperación de sesiones tras fallos o interrupciones.
 
-| ID | Skill Name | URL de Referencia (GitHub Source) | Prioridad |
-| :--- | :--- | :--- | :--- |
-| 1 | `threejs-expert` | [vercel-labs/agent-skills/.../threejs-fundamentals](https://github.com/vercel-labs/agent-skills/tree/main/skills/threejs-fundamentals) | Alta |
-| 2 | `convex-pro` | [vercel-labs/agent-skills/.../convex-best-practices](https://github.com/vercel-labs/agent-skills/tree/main/skills/convex-best-practices) | Alta |
-| 3 | `tanstack-query-expert` | [vercel-labs/agent-skills/.../tanstack-query](https://github.com/vercel-labs/agent-skills/tree/main/skills/tanstack-query) | Media |
-| 4 | `nestjs-pro` | [vercel-labs/agent-skills/.../nestjs-best-practices](https://github.com/vercel-labs/agent-skills/tree/main/skills/nestjs-best-practices) | Media |
-| 5 | `stripe-expert` | [vercel-labs/agent-skills/.../stripe-best-practices](https://github.com/vercel-labs/agent-skills/tree/main/skills/stripe-best-practices) | Alta |
-| 6 | `shadcn-ui-expert` | [vercel-labs/agent-skills/.../shadcn-ui](https://github.com/vercel-labs/agent-skills/tree/main/skills/shadcn-ui) | Alta |
-| 7 | `monorepo-master` | [vercel-labs/agent-skills/.../monorepo-management](https://github.com/vercel-labs/agent-skills/tree/main/skills/monorepo-management) | Media |
-| 8 | `github-actions-pro` | [vercel-labs/agent-skills/.../github-actions-templates](https://github.com/vercel-labs/agent-skills/tree/main/skills/github-actions-templates) | Media |
-| 9 | `subagent-orchestrator` | [vercel-labs/agent-skills/.../subagent-driven-development](https://github.com/vercel-labs/agent-skills/tree/main/skills/subagent-driven-development) | Alta |
-| 10 | `c4-architect` | [vercel-labs/agent-skills/.../c4-architecture](https://github.com/vercel-labs/agent-skills/tree/main/skills/c4-architecture) | Baja |
-| 11 | `openapi-pro` | [vercel-labs/agent-skills/.../openapi-to-typescript](https://github.com/vercel-labs/agent-skills/tree/main/skills/openapi-to-typescript) | Media |
-| 12 | `mermaid-diagram-pro` | [vercel-labs/agent-skills/.../mermaid-diagrams](https://github.com/vercel-labs/agent-skills/tree/main/skills/mermaid-diagrams) | Media |
-| 13 | `marketing-expert` | [vercel-labs/agent-skills/.../marketing-psychology](https://github.com/vercel-labs/agent-skills/tree/main/skills/marketing-psychology) | Baja |
-| 14 | `programmatic-seo-pro` | [vercel-labs/agent-skills/.../programmatic-seo](https://github.com/vercel-labs/agent-skills/tree/main/skills/programmatic-seo) | Media |
-| 15 | `e2e-testing-expert` | [vercel-labs/agent-skills/.../e2e-testing-patterns](https://github.com/vercel-labs/agent-skills/tree/main/skills/e2e-testing-patterns) | Media |
-| 16 | `security-audit-pro` | [vercel-labs/agent-skills/.../convex-security-audit](https://github.com/vercel-labs/agent-skills/tree/main/skills/convex-security-audit) | Media |
-| 17 | `humanizer-pro` | [vercel-labs/agent-skills/.../humanizer](https://github.com/vercel-labs/agent-skills/tree/main/skills/humanizer) | Baja |
-| 18 | `scrum-conductor` | [vercel-labs/agent-skills/.../daily-meeting-update](https://github.com/vercel-labs/agent-skills/tree/main/skills/daily-meeting-update) | Baja |
-| 19 | `code-review-pro` | [vercel-labs/agent-skills/.../code-review-excellence](https://github.com/vercel-labs/agent-skills/tree/main/skills/code-review-excellence) | Alta |
-| 20 | `design-system-pro` | [vercel-labs/agent-skills/.../design-system-patterns](https://github.com/vercel-labs/agent-skills/tree/main/skills/design-system-patterns) | Media |
+## 2. Refactor de Scripts de Instalación (`setup.sh` & `setup.cmd`)
 
----
+- **Modularización**: Separar el JSON de configuración en variables lógicas (MODEL_CONFIG, UI_CONFIG, TOOL_CONFIG) para facilitar el mantenimiento.
+- **Detección de Versión**: Añadir un check inicial para alertar si el usuario no tiene instalada al menos la v0.30.
+- **Limpieza de Hooks**: Confirmar que los hooks deshabilitados no interfieran con las nuevas capacidades nativas de v0.33.
 
-## 🛠️ Subpasos para la Importación y Adaptación
+## 3. Actualización de Documentación y Skills
 
-Para cada skill, seguiré este flujo de trabajo para garantizar que no solo importamos, sino que mejoramos y unificamos el conocimiento:
+- **`README.md`**: Actualizar la sección de "Protocolos" para reflejar el uso de Gemini 3.
+- **`GEMINI.md` (Contexto Global)**: Actualizar el bloque `<ELITE_CORE_CONTEXT>` con las nuevas capacidades de 2026.
 
-1.  **Análisis de Similitud (Merge Check):** Antes de crear nada, verificaré si ya existe una skill similar en `skills/`. Si existe, el objetivo será una **fusión (merge)**: extraer lo mejor de la nueva fuente y añadirlo a nuestra base existente, manteniendo nuestros estándares de "Pro/Expert".
-2.  **Exploración Exhaustiva de la Fuente:** No me limitaré al `SKILL.md`. Revisaré el repositorio de origen completo buscando archivos de referencia, ejemplos de código (`examples/`), scripts de automatización o plantillas que podamos adaptar.
-3.  **Extracción y Refactorización:** Descargar y adaptar el contenido a nuestra estructura (references, scripts, templates).
-4.  **Expansión de Contenido (Recency Check):** Búsqueda web para actualizar a **Enero 2026** (Next.js 16.2, React 19.3, etc.).
-5.  **Inyección de Stack Moderno y Strict Typing:** Asegurar que todo el código sea Type-safe y use herramientas con esquemas Zod/Pydantic.
-6.  **Registro y Verificación:** Actualizar `SKILLS_REGISTRY.md` y verificar con `tsc`.
+## Pasos de Ejecución Inmediata
+
+1.  **Surgical Edit en `setup.sh`**: Reemplazar el bloque `OPTIMIZED_SETTINGS` con la nueva estructura v0.33.
+2.  **Surgical Edit en `setup.cmd`**: Replicar los cambios para usuarios de Windows.
+3.  **Validación**: Ejecutar el script localmente y verificar que el `settings.json` resultante es válido y aceptado por la CLI.
+4.  **Commit**: `feat(core): upgrade configuration to v0.33 standards with Gemini 3 support`.
 
 ---
-
-## 📝 Progress Tracking (To-Do List)
-
-- [x] **1. `threejs-expert`**
-    - [x] Análisis de similitud y búsqueda exhaustiva en fuente.
-    - [x] Actualización a WebGPU/WebGL 2026.
-    - [x] Creación de estructura y merge de contenidos.
-- [x] **2. `convex-pro`**
-    - [x] Análisis de similitud y búsqueda exhaustiva en fuente.
-    - [x] Actualización a Convex v2+ (RLS y Auth dinámico).
-    - [x] Creación de estructura y merge de contenidos.
-- [x] **3. `tanstack-query-expert`**
-    - [x] Análisis de similitud (¿mezclar con `react-expert`?).
-    - [x] Optimización de caché y Server Actions integration.
-    - [x] Creación de estructura.
-- [x] **4. `nestjs-pro`**
-    - [x] Análisis de similitud y búsqueda en fuente.
-    - [x] Adaptación a microservicios con Bun.
-    - [x] Creación de estructura.
-- [x] **5. `stripe-expert`**
-    - [x] Análisis de similitud y búsqueda en fuente.
-    - [x] Implementación de flujos de pago 2026 (Tax, Billing).
-    - [x] Creación de estructura.
-- [x] **6. `shadcn-ui-expert`**
-    - [x] Análisis de similitud (mezclar con `ui-ux-pro`).
-    - [x] Adaptación a Tailwind 4 y Radix 2026.
-    - [x] Creación de estructura.
-- [x] **7. `monorepo-master`**
-    - [x] Análisis de similitud y búsqueda en fuente.
-    - [x] Optimización para Turborepo + Bun.
-    - [x] Creación de estructura.
-- [x] **8. `github-actions-pro`**
-    - [x] Análisis de similitud y búsqueda en fuente.
-    - [x] Seguridad OIDC y Hardened Runners.
-    - [x] Creación de estructura.
-- [x] **9. `subagent-orchestrator`**
-    - [x] Análisis de similitud (mezclar con `conductor-pro`).
-    - [x] Protocolos de comunicación inter-agente.
-    - [x] Creación de estructura.
-- [x] **10. `c4-architect`**
-    - [x] Análisis de similitud y búsqueda en fuente.
-    - [x] Generación automática de diagramas C4.
-    - [x] Creación de estructura.
-- [x] **11. `openapi-pro`**
-    - [x] Análisis de similitud y búsqueda en fuente.
-    - [x] Generación de clientes Type-safe (Zod/Fetch).
-    - [x] Creación de estructura.
-- [x] **12. `mermaid-diagram-pro`**
-    - [x] Análisis de similitud y búsqueda en fuente.
-    - [x] Soporte para diagramas de secuencia complejos.
-    - [x] Creación de estructura.
-- [x] **13. `marketing-expert`**
-    - [x] Análisis de similitud y búsqueda en fuente.
-    - [x] Estrategias de CRO y analítica 2026.
-    - [x] Creación de estructura.
-- [x] **14. `programmatic-seo-pro`**
-    - [x] Análisis de similitud (mezclar con `seo-pro`).
-    - [x] Generación de contenido con IA y Schema.org.
-    - [x] Creación de estructura.
-- [x] **15. `e2e-testing-expert`**
-    - [x] Análisis de similitud y búsqueda en fuente.
-    - [x] Playwright con visual testing y tracing.
-    - [x] Creación de estructura.
-- [x] **16. `security-audit-pro`**
-    - [x] Análisis de similitud (mezclar con `auditor-pro`).
-    - [x] Auditoría de RLS y dependencias.
-    - [x] Creación de estructura.
-- [x] **17. `humanizer-pro`**
-    - [x] Análisis de similitud y búsqueda en fuente.
-    - [x] Refinamiento de tono y estilo natural.
-    - [x] Creación de estructura.
-- [x] **18. `scrum-conductor`**
-    - [x] Análisis de similitud (mezclar con `track-master`).
-    - [x] Gestión de tickets y sprints automáticos.
-    - [x] Creación de estructura.
-- [x] **19. `code-review-pro`**
-    - [x] Análisis de similitud y búsqueda en fuente.
-    - [x] Auditoría de performance y deuda técnica.
-    - [x] Creación de estructura.
-- [x] **20. `design-system-pro`**
-    - [x] Análisis de similitud y búsqueda en fuente.
-    - [x] Gestión de Tokens de Diseño y documentación.
-    - [x] Creación de estructura.
-
----
-*Ultima actualización: 23 de enero, 2026*
+*Preparado por Gemini Elite Core - Marzo 2, 2026*

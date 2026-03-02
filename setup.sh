@@ -84,9 +84,9 @@ if [[ "$SELECTED_LANG" == "ES" ]]; then
     MSG_SUCCESS_GEMINI_MD="GEMINI.md global actualizado con protocolos Elite Core."
     MSG_INFO_SKIP_GEMINI="Omitiendo actualización de GEMINI.md. Aún puedes usar las habilidades manualmente."
     MSG_FINISH="¡Aprovisionamiento de Gemini Elite Core completado!"
-    MSG_STATUS_CLI="CLI: Nightly (v0.28.0-nightly.20260129)"
+    MSG_STATUS_CLI="CLI: Nightly (v0.33.0-nightly.20260302)"
     MSG_STATUS_AGENTS="Agentes: Generalist + Especialistas (Event-Driven Scheduler)"
-    MSG_STATUS_PLANNING="Planificación: Persistent & Interactive (v0.28)"
+    MSG_STATUS_PLANNING="Planificación: Persistent & Interactive (v0.33)"
     MSG_STATUS_SKILLS="Habilidades: Desplegadas (Docs Writer +)"
     MSG_STATUS_HOOKS="Hooks: System Active"
     MSG_CONSERVATIVE_PROMPT="¿Quieres ser más conservador o menos conservador?"
@@ -127,9 +127,9 @@ else
     MSG_SUCCESS_GEMINI_MD="Global GEMINI.md updated with Elite Core protocols."
     MSG_INFO_SKIP_GEMINI="Skipping GEMINI.md update. You can still use the skills manually."
     MSG_FINISH="Gemini Elite Core Provisioning Complete!"
-    MSG_STATUS_CLI="CLI: Nightly (v0.28.0-nightly.20260129)"
+    MSG_STATUS_CLI="CLI: Nightly (v0.33.0-nightly.20260302)"
     MSG_STATUS_AGENTS="Agents: Generalist + Specialists (Event-Driven Scheduler)"
-    MSG_STATUS_PLANNING="Planning: Persistent & Interactive (v0.28)"
+    MSG_STATUS_PLANNING="Planning: Persistent & Interactive (v0.33)"
     MSG_STATUS_SKILLS="Skills: Deployed (Docs Writer +)"
     MSG_STATUS_HOOKS="Hooks: System Active"
     MSG_CONSERVATIVE_PROMPT="Do you want to be more conservative or less conservative?"
@@ -343,58 +343,64 @@ cp scripts/*.sh "$SCRIPTS_DIR/" 2>/dev/null || true
 chmod +x "$SCRIPTS_DIR"/*.sh 2>/dev/null || true
 
 OPTIMIZED_SETTINGS='{
-  "enableAgentSkills": true,
-  "core": {
-    "disableLLMCorrection": true,
-    "optimizeShellOutput": true
-  },
-  "skills": {
-    "enabled": true,
-    "codeReviewer": {
-      "enabled": true
+  "modelConfigs": {
+    "thinking-pro": {
+      "model": "gemini-2.0-flash-thinking-exp-01-21",
+      "generateContentConfig": {
+        "thinkingConfig": {
+          "includeThoughts": true,
+          "thinkingBudget": 16000
+        }
+      }
     },
-    "docsWriter": {
-      "enabled": true
+    "elite-coding": {
+      "model": "gemini-3-flash-preview",
+      "generateContentConfig": {
+        "temperature": 0.2,
+        "maxOutputTokens": 8192
+      }
     }
   },
+  "general": {
+    "defaultApprovalMode": "plan",
+    "checkpointing": { "enabled": true },
+    "sessionRetention": { "maxAge": "7d", "maxCount": 100 },
+    "previewFeatures": true,
+    "plan": { "modelRouting": true }
+  },
   "experimental": { 
-    "introspectionAgentSettings": { "enabled": true },
+    "enableAgents": true,
+    "jitContext": true,
+    "toolOutputMasking": true,
     "skillCreator": true, 
     "hooks": true,
-    "hooksSystem": true,
-    "planning": true, 
-    "plan": true,
-    "planningMode": "auto", 
-    "planVisualization": true, 
-    "requirePlanApproval": true,
-    "eventDrivenScheduler": true,
-    "agentRegistry": { "trackAllDiscovered": true }
+    "eventDrivenScheduler": true
   },
-  "plan": {
-    "approvalMode": "interactive",
-    "persistentStorage": true
+  "tools": {
+    "truncateToolOutputThreshold": 30000,
+    "disableLLMCorrection": true,
+    "shell": { "showColor": true }
+  },
+  "ui": {
+    "inlineThinkingMode": "full",
+    "showStatusInTitle": true,
+    "dynamicWindowTitle": true,
+    "footer": { 
+      "hideContextPercentage": false,
+      "showSandboxStatus": true
+    },
+    "showMemoryUsage": true,
+    "showModelInfoInChat": true
   },
   "agents": {
-    "generalist": { "enabled": true, "modelConfig": { "temperature": 0.5, "maxOutputTokens": 4096 }, "runConfig": { "maxTurns": 50, "timeout": 600000 } },
-    "codebaseInvestigator": { "enabled": true, "modelConfig": { "temperature": 0.3, "maxOutputTokens": 4096 }, "runConfig": { "maxTurns": 100, "timeout": 600000 } },
-    "codeReviewer": { "enabled": true, "modelConfig": { "temperature": 0.5, "maxOutputTokens": 2048 }, "runConfig": { "maxTurns": 30, "timeout": 300000 } },
-    "bugFixer": { "enabled": true, "modelConfig": { "temperature": 0.2, "maxOutputTokens": 3000 }, "runConfig": { "maxTurns": 50, "timeout": 300000 } },
-    "skillCreator": { "enabled": true, "modelConfig": { "temperature": 0.7, "maxOutputTokens": 4096 }, "runConfig": { "maxTurns": 50, "timeout": 600000 } }
+    "generalist": { "enabled": true, "modelAlias": "elite-coding" },
+    "codebaseInvestigator": { "enabled": true, "modelAlias": "thinking-pro" }
   },
-  "admin": {    
-      "enableAdminControls": true,
-      "skills": { "enabled": true },
-      "mcp": { "enabled": true },
-      "extensions": { "enabled": true }
-    },
-  "performance": {
-    "enableCache": true
-  },
-  "general": { "previewFeatures": true, "sessionRetention": { "enabled": true }, "enablePromptCompletion": false },
-  "context": { "fileFiltering": { "respectGitIgnore": true }, "loadMemoryFromIncludeDirectories": true },
-  "model": { "compressionThreshold": 0.10, "name": "gemini-3-flash-preview" },
-  "tools": { "shell": { "showColor": true }, "autoAccept": true },
-  "ui": { "footer": { "hideContextPercentage": false }, "showMemoryUsage": true, "showModelInfoInChat": false, "showLineNumbers": false }
+  "context": { 
+    "fileFiltering": { "respectGitIgnore": true },
+    "loadMemoryFromIncludeDirectories": true,
+    "discoveryMaxDirs": 500
+  }
 }'
 
 if command -v bun &> /dev/null; then
@@ -508,10 +514,10 @@ You are an **Elite Senior Software Engineer (2026)**. You are not a simple assis
 - **Zero Tolerance for `any`**: Typing must be strict and descriptive. If a type doesn't exist, create it. Do not "vibe-code" without types.
 - **Atomicity and Security**: NEVER use `git add .`. It is a protocol violation. Use EXCLUSIVELY `~/.gemini/scripts/committer.sh` for surgical and safe staging.
 - **Technical Conciseness**: Speak with code and facts. Avoid unnecessary preambles ("Okay, I will..."). Be direct and professional.
-- **Performance v0.28 (Nightly 20260129)**: Always prioritize the new capabilities: **Event-Driven Scheduler** (Low latency), **Persistent Plan Storage** (Session recovery), and **Shell Output Optimization**.
+- **Performance v0.33 (Elite Core 2026)**: Always prioritize the new capabilities: **Gemini 3 Thinking**, **Event-Driven Scheduler**, and **Tool Output Masking**.
 
 ### 3. Action Protocols
-- **MANDATORY: Plan-First Execution**: YOU MUST ALWAYS START EVERY TASK BY INITIALIZING PLAN MODE (`Shift+Tab` or `/plan`). Do not perform any file modifications or complex tool calls until a plan has been explicitly shared and approved by the user. This is a non-negotiable step for all engineering tasks. Note: Plans are stored in `~/.gemini/plans/`.
+- **MANDATORY: Plan-First Execution**: YOU MUST ALWAYS START EVERY TASK BY INITIALIZING PLAN MODE (`Shift+Tab` or `/plan`). Use **Gemini 3 Thinking** for complex strategies. Note: Plans are stored in `~/.gemini/plans/`.
 - **Skill Mastery**: Before touching any framework (Next.js, React, Supabase), you MUST activate the corresponding skill (`activate_skill`). Acting without expert context is negligence.
 - **Mandatory Modularity**: If a file approaches 500 lines, stop and propose a refactor. Large files are the enemy of intelligence.
 - **Continuous Validation**: Every logic change must be followed by a type check (`TSC`) and, if possible, unit tests.
