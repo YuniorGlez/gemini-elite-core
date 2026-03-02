@@ -17,7 +17,7 @@ Transformar cada habilidad diseñada originalmente para Claude Code en una "Tact
 ## 📈 Estado de la Misión
 
 - [x] **advanced-evaluation**
-- [ ] **bdi-mental-states**
+- [x] **bdi-mental-states**
 - [ ] **context-compression**
 - [ ] **context-degradation**
 - [ ] **context-fundamentals**
