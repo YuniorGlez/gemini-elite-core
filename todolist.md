@@ -19,7 +19,7 @@ Transformar cada habilidad diseñada originalmente para Claude Code en una "Tact
 - [x] **advanced-evaluation**
 - [x] **bdi-mental-states**
 - [x] **context-compression**
-- [ ] **context-degradation**
+- [x] **context-degradation**
 - [ ] **context-fundamentals**
 - [ ] **context-optimization**
 - [ ] **evaluation**
