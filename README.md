@@ -55,7 +55,6 @@ Need deep knowledge of Next.js 16?
 
 Gemini Elite Core includes hooks that:
 
-- **Auto-Type-Check**: Runs `tsc --noEmit` after logic changes and blocks execution on failure (v0.27.0 standard).
 - **Commit Sentinel**: Ensures your commits follow Conventional Commits standards.
 
 ## 📂 Repository Structure

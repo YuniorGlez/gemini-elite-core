@@ -13,7 +13,7 @@
     },
     "hooks": {
       "title": "Protocol Hooks",
-      "desc": "Strict Elite Core protocols with automated type-checking, commit validation, and session triggers."
+      "desc": "Strict Elite Core protocols with commit validation and session triggers."
     },
     "conductor": {
       "title": "51 Specialist Skills",

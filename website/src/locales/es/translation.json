@@ -13,7 +13,7 @@
     },
     "hooks": {
       "title": "Protocol Hooks",
-      "desc": "Protocolos estrictos Elite Core con type-checking automático, validación de commits y triggers de sesión."
+      "desc": "Protocolos estrictos Elite Core con validación de commits y triggers de sesión."
     },
     "conductor": {
       "title": "51 Skills Especialistas",
