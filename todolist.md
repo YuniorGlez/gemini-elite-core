@@ -25,7 +25,7 @@ Transformar cada habilidad diseñada originalmente para Claude Code en una "Tact
 - [x] **evaluation**
 - [x] **filesystem-context**
 - [x] **hosted-agents**
-- [ ] **memory-systems**
+- [x] **memory-systems**
 - [ ] **multi-agent-patterns**
 - [ ] **project-development**
 - [ ] **tool-design**
