@@ -22,7 +22,7 @@ Transformar cada habilidad diseñada originalmente para Claude Code en una "Tact
 - [x] **context-degradation**
 - [x] **context-fundamentals**
 - [x] **context-optimization**
-- [ ] **evaluation**
+- [x] **evaluation**
 - [ ] **filesystem-context**
 - [ ] **hosted-agents**
 - [ ] **memory-systems**
