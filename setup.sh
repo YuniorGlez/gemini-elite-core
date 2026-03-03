@@ -381,8 +381,9 @@ OPTIMIZED_SETTINGS='{
   "experimental": { 
     "enableAgents": true,
     "jitContext": true,
-    "toolOutputMasking": true,
-    "skillCreator": true, 
+    "skillCreator": {
+        "enabled" : true
+    }, 
     "hooks": true,
     "eventDrivenScheduler": true
   },
