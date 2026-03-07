@@ -29,9 +29,9 @@ Before declaring any task "Finished," the Sentinel MUST verify:
 
 1.  **Contract Integrity**: Does the code match the defined interfaces (Zod)?
 2.  **Architectural Alignment**: Is it idiomatic Next.js 16/React 19? (e.g., Server Components by default).
-3.  **Security Sanitization**: Are all inputs validated? No secrets in logs or code?
-4.  **Performance Hygiene**: No N+1 queries? Images optimized? Bundle size checked?
-5.  **Cleanliness Audit**: Are `console.log` and debug artifacts removed?
+3.  **The AI Slop Test**: Does the UI look like a generic AI template? Verify against `IMPECCABLE_DNA.md`.
+4.  **Security Sanitization**: Are all inputs validated? No secrets in logs or code?
+5.  **Performance Hygiene**: No N+1 queries? Images optimized? Bundle size checked?
 6.  **Traceability**: Is the "Why" documented (comments/ADRs)?
 
 ---
@@ -81,6 +81,7 @@ If the Audit fails:
 
 Detailed deep-dives into Quality Excellence:
 
+- [**Impeccable DNA**](../expert-instruction/references/IMPECCABLE_DNA.md): High-fidelity design standards.
 - [**Verification Gap**](./references/verification-gap-resolution.md): Trusting AI code at scale.
 - [**AI Code Standards**](./references/ai-generated-code-standards.md): Excellence and mimicry.
 - [**Quality Metrics**](./references/quality-gate-metrics.md): KPIs for the code sentinel.

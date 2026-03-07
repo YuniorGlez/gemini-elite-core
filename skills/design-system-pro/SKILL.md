@@ -27,7 +27,11 @@ As of 2026, a flat token list is a legacy pattern.
 - **Rule**: Follow the **Primitive → Semantic → Component** hierarchy.
 - **Protocol**: Never use primitive tokens (e.g., `blue-500`) directly in components. Use semantic tokens (e.g., `action-primary-bg`).
 
-### 2. Tailwind 4 CSS-First Configuration
+### 2. OKLCH Color & Expression
+- **Rule**: Pure HEX is for primitives only. Semantic colors MUST use `oklch()` for perceptual uniformity.
+- **Protocol**: Follow the **60/30/10 rule** for palette distribution to ensure hierarchy. Avoid the "AI Rainbow" (too many accent colors). Use `color-mix()` for subtle variations.
+
+### 3. Tailwind 4 CSS-First Configuration
 - **Rule**: The `tailwind.config.js` is deprecated. Use `@theme` blocks in CSS.
 - **Protocol**: Centralize tokens as native CSS variables in a `packages/design-tokens` package for runtime interoperability.
 
@@ -38,6 +42,16 @@ As of 2026, a flat token list is a legacy pattern.
 ### 4. Documentation-as-Code (DaC)
 - **Rule**: Documentation must be a side-effect of the code, not a manual task.
 - **Protocol**: Use JSON-LD or typed JSON files as the source of truth for tokens, transformed via Style Dictionary for CSS, Android, and iOS.
+
+---
+
+## 🧼 Impeccable Normalization Protocol
+
+Before finalizing any design system contribution:
+1. **Discover & Mimic**: Search for existing patterns. NEVER create a "one-off" component if a system equivalent exists.
+2. **Drift Detection**: Identify hard-coded values and "normalize" them back into semantic tokens.
+3. **AI Slop Audit**: Ensure the tokens don't encourage "AI Standard" aesthetics (e.g., generic purple-to-blue gradients).
+4. **Resilience Test**: Verify tokens in extreme contexts (High Contrast, RTL, Low-bandwidth fonts).
 
 ---
 
@@ -95,6 +109,7 @@ export function CustomTooltip({ children, content }: { children: React.ReactNode
 
 ## 📂 Progressive Disclosure (Deep Dives)
 
+- [**Impeccable DNA**](../expert-instruction/references/IMPECCABLE_DNA.md): High-fidelity design standards.
 - **[Layered Token Strategy](./references/token-layers.md)**: Primitives, Semantics, and Components.
 - **[Tailwind 4 Monorepo Config](./references/tw4-monorepo.md)**: CSS-First themes at scale.
 - **[Headless UI Patterns](./references/headless-patterns.md)**: Using Radix and Aria-Kit.

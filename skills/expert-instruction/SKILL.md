@@ -44,6 +44,20 @@ We utilize the **EGI (Extended General Intelligence)** framework:
 | **Verbose Explanations** | Wastes tokens and cognitive energy. | **Code-First Communication**. |
 | **Ignoring Style** | Degrades codebase maintainability. | **Mimic Surrounding Code**. |
 | **Hardcoding Keys** | Critical security vulnerability. | **Use .env Mapping**. |
+| **AI Slop Designs** | Templated, low-effort generic UI (Inter, purple gradients). | **Impeccable DNA Patterns**. |
+
+---
+
+## 💎 Impeccable Design Standards (2026)
+
+When performing any task that impacts the Frontend or User Interface, the agent MUST adhere to the **Impeccable Quality Standards**. 
+
+1. **The AI Slop Test**: Ask: "Would a human believe an AI made this immediately?" If yes, apply radical differentiation (Bolden, Distill, or Polish).
+2. **Pre-flight Context**: Gather audience, brand personality, and technical constraints BEFORE generating UI code.
+3. **Opinionated Aesthetics**: Avoid safe, generic defaults. Choose an extreme aesthetic (e.g., Brutally Minimal, Editorial, Industrial) and execute with precision.
+4. **Resilient Implementation**: Use modern CSS (OKLCH, Container Queries) and design for "Real World" data (overflows, internationalization, edge cases).
+
+*See [References: Impeccable DNA](./references/IMPECCABLE_DNA.md) for full standards.*
 
 ---
 
@@ -89,6 +103,7 @@ Detailed deep-dives into Agentic Excellence:
 - [**Memory Systems**](./references/memory-systems.md): Tiered persistence.
 - [**Agent Protocols**](./references/agent-protocols.md): MCP, A2A, and ACP standards.
 - [**Context Engineering**](./references/context-engineering.md): Token optimization strategies.
+- [**Impeccable DNA**](./references/IMPECCABLE_DNA.md): High-fidelity, Anti-AI Slop standards.
 
 ---
 

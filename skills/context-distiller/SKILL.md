@@ -28,10 +28,11 @@ The `context-distiller` is the master of high-fidelity information management fo
 Before initiating a new mission or subproject, the Distiller MUST:
 
 1.  **Codebase Scan**: Use `rg` and `list_directory` to map the active module's boundaries.
-2.  **Symbol Indexing**: Generate a list of critical types and interfaces.
-3.  **Inheritance Audit**: load master rules from `docs/AGENTS.md`.
-4.  **Local Rehydration**: Create or read `.gemini/GEMINI.md` for mission-specific context.
-5.  **Context Packing**: Bundle all findings into a structured Markdown artifact.
+2.  **Essence Extraction**: Apply the **Impeccable Distill** logic—identify the 20% of code that provides 80% of the value. Strip away "Noise" (boilerplate, unused imports, redundant logic).
+3.  **Symbol Indexing**: Generate a list of critical types and interfaces.
+4.  **Inheritance Audit**: load master rules from `docs/AGENTS.md`.
+5.  **Local Rehydration**: Create or read `.gemini/GEMINI.md` for mission-specific context.
+6.  **Context Packing**: Bundle all findings into a structured Markdown artifact.
 
 ---
 
@@ -70,6 +71,7 @@ When projects are large, don't read everything—use a map.
 
 Detailed deep-dives into Information Engineering:
 
+- [**Impeccable DNA**](../expert-instruction/references/IMPECCABLE_DNA.md): High-fidelity design standards.
 - [**Context Packing**](./references/automated-context-packing.md): Bundling artifacts for LLMs.
 - [**Symbolic Mapping**](./references/symbol-indexing-symbolic-ai.md): Navigating large codebases.
 - [**Memory Rehydration**](./references/agent-memory-rehydration.md): Persistent mission context.
